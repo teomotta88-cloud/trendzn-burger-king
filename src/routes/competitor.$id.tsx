@@ -197,7 +197,7 @@ function Page() {
     return (
       <div className="py-20 text-center">
         <h1 className="font-display text-2xl font-bold">Profilo non trovato</h1>
-        <Link to="/influencer" className="mt-4 inline-block text-primary">
+        <Link to="/competitor" className="mt-4 inline-block text-primary">
           Torna ai competitor
         </Link>
       </div>
@@ -215,7 +215,7 @@ function Page() {
   return (
     <div className="space-y-8">
       <Link
-        to="/influencer"
+        to="/competitor"
         className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
       >
         <ArrowLeft className="size-4" /> Tutti i competitor
