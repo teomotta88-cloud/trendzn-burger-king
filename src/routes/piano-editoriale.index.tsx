@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/pageMetadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { Plus } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -20,13 +21,7 @@ import { ClientChannelsPanel } from "@/components/PianoEditoriale/ClientChannels
 
 export const Route = createFileRoute("/piano-editoriale/")({
   head: () => ({
-    meta: [
-      { title: "Piano Editoriale — Burger King" },
-      {
-        name: "description",
-        content: "Calendario editoriale mensile con copy, visual e approvazioni.",
-      },
-    ],
+    meta: pageMetadata("Piano Editoriale — Burger King", "Calendario editoriale mensile con copy, visual e approvazioni."),
   }),
   component: PianoEditorialePage,
 });

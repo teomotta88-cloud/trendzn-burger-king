@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/pageMetadata";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { detectPlatform } from "@/lib/trends";
@@ -6,7 +7,7 @@ import { ArrowLeft, ExternalLink, Search } from "lucide-react";
 
 export const Route = createFileRoute("/competitor/$id")({
   head: () => ({
-    meta: [{ title: "Competitor — Burger King" }, { name: "description", content: "Profilo competitor monitorato." }],
+    meta: pageMetadata("Profilo competitor — Burger King", "Profilo competitor monitorato."),
   }),
   component: Page,
 });

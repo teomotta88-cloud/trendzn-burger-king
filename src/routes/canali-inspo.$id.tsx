@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/pageMetadata";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { detectPlatform, type CanaleInspo } from "@/lib/trends";
@@ -6,7 +7,7 @@ import { ArrowLeft, ExternalLink, Search } from "lucide-react";
 
 export const Route = createFileRoute("/canali-inspo/$id")({
   head: () => ({
-    meta: [{ title: "Canale — Burger King" }, { name: "description", content: "Canale di ispirazione social." }],
+    meta: pageMetadata("Canale — Burger King", "Canale di ispirazione social."),
   }),
   component: Page,
 });
