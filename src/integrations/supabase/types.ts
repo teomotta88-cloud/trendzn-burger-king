@@ -14,7 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      trend_submissions: {
+        Row: {
+          category: string | null
+          created_at: string
+          id: string
+          industry: string | null
+          raw_email: string | null
+          score: number | null
+          section: string
+          status: string
+          submitted_by: string
+          tags: string[] | null
+          title: string | null
+          url: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          id?: string
+          industry?: string | null
+          raw_email?: string | null
+          score?: number | null
+          section: string
+          status?: string
+          submitted_by?: string
+          tags?: string[] | null
+          title?: string | null
+          url: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          id?: string
+          industry?: string | null
+          raw_email?: string | null
+          score?: number | null
+          section?: string
+          status?: string
+          submitted_by?: string
+          tags?: string[] | null
+          title?: string | null
+          url?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
