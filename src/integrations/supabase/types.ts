@@ -10,287 +10,21 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.5"
+    PostgrestVersion: "14.18"
   }
   public: {
     Tables: {
-      editorial_client_channels: {
-        Row: {
-          avatar_url: string | null
-          bio: string | null
-          canale: string
-          created_at: string
-          display_name: string | null
-          followers_count: string | null
-          following_count: string | null
-          handle: string
-          id: string
-          posts_count: string | null
-          scraped_at: string | null
-          url: string
-        }
-        Insert: {
-          avatar_url?: string | null
-          bio?: string | null
-          canale: string
-          created_at?: string
-          display_name?: string | null
-          followers_count?: string | null
-          following_count?: string | null
-          handle: string
-          id?: string
-          posts_count?: string | null
-          scraped_at?: string | null
-          url: string
-        }
-        Update: {
-          avatar_url?: string | null
-          bio?: string | null
-          canale?: string
-          created_at?: string
-          display_name?: string | null
-          followers_count?: string | null
-          following_count?: string | null
-          handle?: string
-          id?: string
-          posts_count?: string | null
-          scraped_at?: string | null
-          url?: string
-        }
-        Relationships: []
-      }
-      editorial_plans: {
-        Row: {
-          created_at: string
-          id: string
-          month: number
-          year: number
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          month: number
-          year: number
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          month?: number
-          year?: number
-        }
-        Relationships: []
-      }
-      editorial_post_approvals: {
-        Row: {
-          component: string
-          created_at: string
-          id: string
-          post_id: string
-        }
-        Insert: {
-          component: string
-          created_at?: string
-          id?: string
-          post_id: string
-        }
-        Update: {
-          component?: string
-          created_at?: string
-          id?: string
-          post_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "editorial_post_approvals_post_id_fkey"
-            columns: ["post_id"]
-            isOneToOne: false
-            referencedRelation: "editorial_posts"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      editorial_post_comments: {
-        Row: {
-          body: string
-          component: string
-          created_at: string
-          id: string
-          post_id: string
-        }
-        Insert: {
-          body: string
-          component: string
-          created_at?: string
-          id?: string
-          post_id: string
-        }
-        Update: {
-          body?: string
-          component?: string
-          created_at?: string
-          id?: string
-          post_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "editorial_post_comments_post_id_fkey"
-            columns: ["post_id"]
-            isOneToOne: false
-            referencedRelation: "editorial_posts"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      editorial_post_media: {
-        Row: {
-          created_at: string
-          id: string
-          position: number
-          post_id: string
-          type: string | null
-          url: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          position?: number
-          post_id: string
-          type?: string | null
-          url: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          position?: number
-          post_id?: string
-          type?: string | null
-          url?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "editorial_post_media_post_id_fkey"
-            columns: ["post_id"]
-            isOneToOne: false
-            referencedRelation: "editorial_posts"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      editorial_posts: {
-        Row: {
-          budget_media: number | null
-          canali: string[]
-          channel_copies: Json
-          copy_visual: string | null
-          created_at: string
-          disclaimer: string | null
-          formato: string | null
-          id: string
-          obiettivo_media: string | null
-          plan_id: string
-          post_date: string
-          programmato: boolean
-          rubrica: string | null
-          topic: string | null
-          visual_type: string | null
-          visual_url: string | null
-        }
-        Insert: {
-          budget_media?: number | null
-          canali?: string[]
-          channel_copies?: Json
-          copy_visual?: string | null
-          created_at?: string
-          disclaimer?: string | null
-          formato?: string | null
-          id?: string
-          obiettivo_media?: string | null
-          plan_id: string
-          post_date: string
-          programmato?: boolean
-          rubrica?: string | null
-          topic?: string | null
-          visual_type?: string | null
-          visual_url?: string | null
-        }
-        Update: {
-          budget_media?: number | null
-          canali?: string[]
-          channel_copies?: Json
-          copy_visual?: string | null
-          created_at?: string
-          disclaimer?: string | null
-          formato?: string | null
-          id?: string
-          obiettivo_media?: string | null
-          plan_id?: string
-          post_date?: string
-          programmato?: boolean
-          rubrica?: string | null
-          topic?: string | null
-          visual_type?: string | null
-          visual_url?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "editorial_posts_plan_id_fkey"
-            columns: ["plan_id"]
-            isOneToOne: false
-            referencedRelation: "editorial_plans"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      editorial_published_posts: {
-        Row: {
-          canale: string
-          caption: string | null
-          created_at: string
-          id: string
-          matched_post_id: string | null
-          published_date: string
-          url: string
-        }
-        Insert: {
-          canale: string
-          caption?: string | null
-          created_at?: string
-          id?: string
-          matched_post_id?: string | null
-          published_date: string
-          url: string
-        }
-        Update: {
-          canale?: string
-          caption?: string | null
-          created_at?: string
-          id?: string
-          matched_post_id?: string | null
-          published_date?: string
-          url?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "editorial_published_posts_matched_post_id_fkey"
-            columns: ["matched_post_id"]
-            isOneToOne: false
-            referencedRelation: "editorial_posts"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       trend_submissions: {
         Row: {
           category: string | null
           created_at: string
           id: string
           industry: string | null
-          posted_at: string | null
           raw_email: string | null
           score: number | null
-          section: string | null
-          status: Database["public"]["Enums"]["trend_submission_status"]
-          submitted_by: string | null
+          section: string
+          status: string
+          submitted_by: string
           tags: string[] | null
           title: string | null
           url: string
@@ -300,12 +34,11 @@ export type Database = {
           created_at?: string
           id?: string
           industry?: string | null
-          posted_at?: string | null
           raw_email?: string | null
           score?: number | null
-          section?: string | null
-          status?: Database["public"]["Enums"]["trend_submission_status"]
-          submitted_by?: string | null
+          section: string
+          status?: string
+          submitted_by?: string
           tags?: string[] | null
           title?: string | null
           url: string
@@ -315,12 +48,11 @@ export type Database = {
           created_at?: string
           id?: string
           industry?: string | null
-          posted_at?: string | null
           raw_email?: string | null
           score?: number | null
-          section?: string | null
-          status?: Database["public"]["Enums"]["trend_submission_status"]
-          submitted_by?: string | null
+          section?: string
+          status?: string
+          submitted_by?: string
           tags?: string[] | null
           title?: string | null
           url?: string
@@ -335,7 +67,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      trend_submission_status: "pending" | "approved" | "rejected"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never
@@ -462,8 +194,6 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {
-      trend_submission_status: ["pending", "approved", "rejected"],
-    },
+    Enums: {},
   },
 } as const

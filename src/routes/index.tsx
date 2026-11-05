@@ -1,17 +1,11 @@
+import { pageMetadata } from "@/lib/pageMetadata";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { trendRealTime, trendAttuali, trendEvergreen, canaliInspo } from "@/lib/trends";
 import { ArrowRight, Zap, TrendingUp, Sparkles, CalendarDays } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: [
-      { title: "Trendzn × Burger King — Trend social & canali inspo" },
-      {
-        name: "description",
-        content:
-          "Esplora trend social real time, trend attuali e canali di ispirazione, filtrabili per industry, piattaforma e categoria.",
-      },
-    ],
+    meta: pageMetadata("Trendzn × Burger King — Trend social & canali inspo", "Esplora trend social real time, trend attuali e canali di ispirazione, filtrabili per industry, piattaforma e categoria."),
   }),
   component: Index,
 });

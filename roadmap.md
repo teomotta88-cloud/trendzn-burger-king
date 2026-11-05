@@ -1,0 +1,3 @@
+- [x] Correct error-page compatibility and competitor return links.
+- [x] Restore the missing trend submission schema and generated types.
+- [x] Verify the preview checks and page navigation.

@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/pageMetadata";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState, useEffect, useCallback, useRef } from "react";
 import { PlatformIcon } from "@/components/SocialEmbed";
@@ -6,13 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/competitor/")({
   head: () => ({
-    meta: [
-      { title: "Competitor — Burger King" },
-      {
-        name: "description",
-        content: "Competitor analysis - Profili brand e competitor monitorati.",
-      },
-    ],
+    meta: pageMetadata("Competitor — Burger King", "Competitor analysis - Profili brand e competitor monitorati."),
   }),
   component: CompetitorPage,
 });

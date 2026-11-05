@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/pageMetadata";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState, useEffect, useCallback } from "react";
 import type { CanaleInspo } from "@/lib/trends";
@@ -8,13 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/canali-inspo/")({
   head: () => ({
-    meta: [
-      { title: "Canali Inspo — Burger King" },
-      {
-        name: "description",
-        content: "Bacheca di account e siti da seguire per inspo social, format, meme e real time marketing.",
-      },
-    ],
+    meta: pageMetadata("Canali Inspo — Burger King", "Bacheca di account e siti da seguire per inspo social, format, meme e real time marketing."),
   }),
   component: Feed,
 });

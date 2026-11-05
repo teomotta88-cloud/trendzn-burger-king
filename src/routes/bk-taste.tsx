@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/pageMetadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, useCallback } from "react";
 import { trendRealTime } from "@/lib/trends";
@@ -7,7 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/bk-taste")({
   head: () => ({
-    meta: [{ title: "BK TASTE — Burger King" }],
+    meta: pageMetadata("BK TASTE — Burger King", "Trend social dedicati al gusto, al Whopper e alla cottura alla griglia."),
   }),
   component: Page,
 });
