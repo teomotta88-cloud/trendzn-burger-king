@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
 
-type Section = "trend-real-time" | "trend-attuali" | "trend-evergreen" | "canali-inspo" | "influencer";
+type Section = "trend-real-time" | "trend-attuali" | "trend-evergreen" | "trend-attitude" | "canali-inspo" | "influencer";
 
 // Le uniche 5 categorie target ammesse per i trend: qualunque post ne
 // riguardi più di una va etichettato "Multi Target", non elencato per esteso.
@@ -22,6 +22,7 @@ const SECTION_FIELDS: Record<Section, FieldConfig[]> = {
   "trend-real-time": [],
   "trend-attuali": [],
   "trend-evergreen": [],
+  "trend-attitude": [],
   "canali-inspo": [{ key: "title", label: "Nome canale", placeholder: "es. Format interviste", required: false }],
   influencer: [
     { key: "industry", label: "Nome influencer", placeholder: "es. Chiara Ferragni", required: false },

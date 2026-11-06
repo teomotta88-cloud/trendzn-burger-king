@@ -1,14 +1,14 @@
 import { pageMetadata } from "@/lib/pageMetadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, useCallback } from "react";
-import { trendAttuali } from "@/lib/trends";
+import { trendEvergreen } from "@/lib/trends";
 import type { TrendItem } from "@/lib/trends";
 import { TrendGrid } from "@/components/TrendGrid";
 import { supabase } from "@/integrations/supabase/client";
 
-export const Route = createFileRoute("/bk-world")({
+export const Route = createFileRoute("/king-life")({
   head: () => ({
-    meta: pageMetadata("BK WORLD — Burger King", "Ispirazioni e trend per l’universo visivo del brand Burger King."),
+    meta: pageMetadata("King Life — Burger King", "Contenuti e trend nati dai momenti di consumo."),
   }),
   component: Page,
 });
@@ -27,7 +27,7 @@ type DbRow = {
 
 function rowToTrendItem(row: DbRow): TrendItem {
   return {
-    category: row.category ?? "Trend to Adapt",
+    category: row.category ?? "Cultural Formats",
     links: [row.url],
     descrizione: null,
     nome_trend: row.title ?? null,
@@ -49,7 +49,7 @@ function Page() {
     supabase
       .from("trend_submissions")
       .select("id, url, title, category, industry, tags, score, created_at, raw_email")
-      .eq("section", "trend-attuali")
+      .eq("section", "trend-evergreen")
       .eq("status", "approved")
       .order("created_at", { ascending: false })
       .then(({ data }) => {
@@ -71,14 +71,14 @@ function Page() {
   }, []);
 
   const dbIds: Record<string, string> = Object.fromEntries(dbRows.map((r) => [r.url, r.id]));
-  const allItems: TrendItem[] = [...dbRows.map(rowToTrendItem), ...trendAttuali];
+  const allItems: TrendItem[] = [...dbRows.map(rowToTrendItem), ...trendEvergreen];
 
   return (
     <div className="space-y-8">
       <div className="space-y-2">
-        <h1 className="font-display text-3xl font-bold sm:text-4xl">BK WORLD</h1>
+        <h1 className="font-display text-3xl font-bold sm:text-4xl">King Life</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
-          Un universo visivo che valorizza l'iconico mondo Burger King e tutto ciò che rappresenta: la cottura alla fiamma, ingredienti genuini ed esperienza gustosa. Il brand diventa protagonista, simbolo di piacere autentico e distintivo.
+          Contenuti con trend presi dai momenti di consumo: le occasioni, i gesti e le situazioni quotidiane in cui le persone vivono Burger King.
         </p>
       </div>
       {loading ? (

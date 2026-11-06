@@ -1,12 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-const GITHUB_REPO = "teomotta88-cloud/nostromo-trendzn";
+const GITHUB_REPO = "teomotta88-cloud/trendzn-burger-king";
 const TRENDS_PATH = "src/data/trends.json";
 
 const VALID_SECTIONS = [
   "trend-real-time",
   "trend-attuali",
   "trend-evergreen",
+  "trend-attitude",
   "canali-inspo",
   "influencer",
 ] as const;
@@ -76,6 +77,7 @@ const CATEGORY_LABEL: Record<Section, string> = {
   "trend-real-time": "Trend Real Time",
   "trend-attuali": "Trend Attuali",
   "trend-evergreen": "Trend Evergreen",
+  "trend-attitude": "Trend Attitude",
   "canali-inspo": "Canali Inspo",
   influencer: "Influencer",
 };
