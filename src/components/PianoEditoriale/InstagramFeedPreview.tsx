@@ -10,6 +10,8 @@ import {
   ChevronRight,
   X,
   ExternalLink,
+  Link2,
+  Coffee,
 } from "lucide-react";
 import {
   type EditorialPost,
@@ -21,16 +23,19 @@ import {
   listClientChannels,
 } from "@/lib/editorialPlan";
 
-// Profilo Burger King Italia
+// Profilo Burger King Italia (copia di @burgerking_it)
 const FALLBACK_PROFILE = {
   avatar: "/brand/burger-king-logo.svg",
   handle: "burgerking_it",
   name: "Burger King Italia",
-  bio: "Fast food\nAlla griglia, alla fiamma, a modo tuo 🔥🍔\nHome of the Whopper\nOrdina su burgerking.it",
-  linkUrl: "www.burgerking.it",
-  posts: "55",
-  followers: "3121",
-  following: "14",
+  bio: "Ci hanno buttato in mezzo ai Burger e ne siamo usciti King.\nTROPPO KING.\nScarica l'app 👇",
+  linkUrl: "https://3l9c.adj.st/homepage?adj_t=16l1a267",
+  posts: "1636",
+  followers: "101K",
+  following: "12",
+  verified: true,
+  followedBy: ["jessdipy", "nebbioinvalpadana"],
+  followedByMore: 3,
 };
 
 function isVideo(url: string, type: string | null | undefined) {
@@ -69,6 +74,9 @@ export function InstagramFeedPreview({ posts }: { posts: EditorialPost[] }) {
         posts: igChannel.posts_count || "—",
         followers: igChannel.followers_count || "—",
         following: igChannel.following_count || "—",
+        verified: false,
+        followedBy: [] as string[],
+        followedByMore: 0,
       }
     : FALLBACK_PROFILE;
 
@@ -134,21 +142,48 @@ export function InstagramFeedPreview({ posts }: { posts: EditorialPost[] }) {
   const currentMedia = selectedMedia[mediaIndex];
 
   return (
-    <div className="mx-auto max-w-2xl rounded-2xl border border-border bg-card p-5 sm:p-8">
-      <div className="flex items-center gap-6 sm:gap-10">
-        <img src={PROFILE.avatar} alt={PROFILE.handle} className="size-20 rounded-full object-cover sm:size-32" />
-        <div className="flex-1 space-y-3">
-          <h2 className="text-lg font-semibold">{PROFILE.handle}</h2>
-          <div className="flex gap-6 text-sm">
+    <div className="mx-auto max-w-3xl rounded-2xl border border-border bg-card p-5 sm:p-8">
+      <div className="flex items-start gap-6 sm:gap-14">
+        <div className="flex size-24 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#f5ebdc] sm:size-40">
+          <img
+            src={PROFILE.avatar}
+            alt={PROFILE.handle}
+            className={PROFILE.avatar.endsWith(".svg") ? "h-[68%] w-auto object-contain" : "size-full object-cover"}
+          />
+        </div>
+        <div className="min-w-0 flex-1 space-y-4 pt-1">
+          <div>
+            <div className="flex items-center gap-2">
+              <h2 className="truncate text-xl font-bold sm:text-2xl">{PROFILE.handle}</h2>
+              {PROFILE.verified && (
+                <svg viewBox="0 0 40 40" className="size-5 shrink-0" aria-label="Account verificato">
+                  <path
+                    fill="#0095f6"
+                    d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z"
+                  />
+                </svg>
+              )}
+              <span className="ml-1 text-lg leading-none text-muted-foreground">···</span>
+            </div>
+            <p className="mt-1 text-sm text-muted-foreground">{PROFILE.name}</p>
+          </div>
+
+          <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
             <span><strong>{PROFILE.posts}</strong> post</span>
             <span><strong>{PROFILE.followers}</strong> follower</span>
             <span><strong>{PROFILE.following}</strong> seguiti</span>
           </div>
-          <div className="text-sm">
-            <p className="font-semibold">{PROFILE.name}</p>
-            <p className="whitespace-pre-line text-muted-foreground">{PROFILE.bio}</p>
+
+          <div className="space-y-2 pt-1 text-sm">
+            <p className="whitespace-pre-line">{PROFILE.bio}</p>
             {PROFILE.linkUrl && (
-              <a href={PROFILE.linkUrl} target="_blank" rel="noreferrer" className="text-primary">
+              <a
+                href={PROFILE.linkUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 break-all font-semibold text-primary underline"
+              >
+                <Link2 className="size-4 shrink-0 -rotate-45" />
                 {PROFILE.linkUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")}
               </a>
             )}
@@ -156,10 +191,21 @@ export function InstagramFeedPreview({ posts }: { posts: EditorialPost[] }) {
         </div>
       </div>
 
-      <div className="mt-4 flex gap-2">
-        <button className="flex-1 rounded-lg bg-primary py-1.5 text-sm font-semibold text-primary-foreground">Segui</button>
-        <button className="flex-1 rounded-lg border border-border py-1.5 text-sm font-semibold">Messaggio</button>
-      </div>
+      {PROFILE.followedBy.length > 0 && (
+        <div className="mt-6 flex items-center gap-3 text-xs text-muted-foreground">
+          <div className="flex -space-x-2">
+            <span className="size-9 rounded-full border-2 border-card bg-gradient-to-br from-[#6b7a52] to-[#2f3a2a]" />
+            <span className="size-9 rounded-full border-2 border-card bg-secondary" />
+            <span className="flex size-9 items-center justify-center rounded-full border-2 border-card bg-[#ff5a52] text-white">
+              <Coffee className="size-4" />
+            </span>
+          </div>
+          <span>
+            Account seguito da <strong className="text-foreground">{PROFILE.followedBy.join(", ")}</strong>
+            {PROFILE.followedByMore > 0 && ` + altri ${PROFILE.followedByMore}`}
+          </span>
+        </div>
+      )}
 
       <div className="mt-6 flex justify-center gap-10 border-t border-border pt-2 text-muted-foreground">
         <Grid3x3 className="size-5 text-foreground" />
