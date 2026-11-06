@@ -142,7 +142,7 @@ export function InstagramFeedPreview({ posts }: { posts: EditorialPost[] }) {
   const currentMedia = selectedMedia[mediaIndex];
 
   return (
-    <div className="mx-auto max-w-3xl rounded-2xl border border-white/10 bg-[#0c1014] p-5 text-white sm:p-8">
+    <div className="mx-auto max-w-3xl rounded-2xl border border-border bg-card p-5 sm:p-8">
       <div className="flex items-start gap-6 sm:gap-14">
         <div className="flex size-24 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#f5ebdc] sm:size-40">
           <img
@@ -163,9 +163,9 @@ export function InstagramFeedPreview({ posts }: { posts: EditorialPost[] }) {
                   />
                 </svg>
               )}
-              <span className="ml-1 text-lg leading-none text-white/80">···</span>
+              <span className="ml-1 text-lg leading-none text-muted-foreground">···</span>
             </div>
-            <p className="mt-1 text-sm text-white/90">{PROFILE.name}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{PROFILE.name}</p>
           </div>
 
           <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
@@ -181,7 +181,7 @@ export function InstagramFeedPreview({ posts }: { posts: EditorialPost[] }) {
                 href={PROFILE.linkUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 break-all font-semibold text-[#e0f1ff] underline"
+                className="inline-flex items-center gap-1.5 break-all font-semibold text-primary underline"
               >
                 <Link2 className="size-4 shrink-0 -rotate-45" />
                 {PROFILE.linkUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")}
@@ -192,30 +192,30 @@ export function InstagramFeedPreview({ posts }: { posts: EditorialPost[] }) {
       </div>
 
       {PROFILE.followedBy.length > 0 && (
-        <div className="mt-6 flex items-center gap-3 text-xs text-white/70 sm:ml-0">
+        <div className="mt-6 flex items-center gap-3 text-xs text-muted-foreground">
           <div className="flex -space-x-2">
-            <span className="size-9 rounded-full border-2 border-[#0c1014] bg-gradient-to-br from-[#6b7a52] to-[#2f3a2a]" />
-            <span className="size-9 rounded-full border-2 border-[#0c1014] bg-white" />
-            <span className="flex size-9 items-center justify-center rounded-full border-2 border-[#0c1014] bg-[#ff5a52] text-white">
+            <span className="size-9 rounded-full border-2 border-card bg-gradient-to-br from-[#6b7a52] to-[#2f3a2a]" />
+            <span className="size-9 rounded-full border-2 border-card bg-secondary" />
+            <span className="flex size-9 items-center justify-center rounded-full border-2 border-card bg-[#ff5a52] text-white">
               <Coffee className="size-4" />
             </span>
           </div>
           <span>
-            Account seguito da <strong className="text-white">{PROFILE.followedBy.join(", ")}</strong>
+            Account seguito da <strong className="text-foreground">{PROFILE.followedBy.join(", ")}</strong>
             {PROFILE.followedByMore > 0 && ` + altri ${PROFILE.followedByMore}`}
           </span>
         </div>
       )}
 
-      <div className="mt-6 flex justify-center gap-10 border-t border-white/10 pt-2 text-white/50">
-        <Grid3x3 className="size-5 text-white" />
+      <div className="mt-6 flex justify-center gap-10 border-t border-border pt-2 text-muted-foreground">
+        <Grid3x3 className="size-5 text-foreground" />
         <UserSquare2 className="size-5" />
         <Bookmark className="size-5" />
       </div>
 
       <div className="mt-1 grid grid-cols-3 gap-0.5">
         {withVisual.length === 0 && (
-          <p className="col-span-3 py-10 text-center text-sm text-white/60">
+          <p className="col-span-3 py-10 text-center text-sm text-muted-foreground">
             Nessun visual ancora caricato nel piano.
           </p>
         )}
@@ -227,7 +227,7 @@ export function InstagramFeedPreview({ posts }: { posts: EditorialPost[] }) {
               key={p.id}
               type="button"
               onClick={() => openPost(p.id)}
-              className="relative aspect-square overflow-hidden bg-white/10"
+              className="relative aspect-square overflow-hidden bg-muted"
             >
               {first && isVideo(first.url, first.type) ? (
                 <video src={first.url} className="size-full object-cover" muted />
@@ -255,7 +255,7 @@ export function InstagramFeedPreview({ posts }: { posts: EditorialPost[] }) {
           </button>
 
           <div
-            className="flex max-h-[92vh] w-full max-w-5xl flex-col overflow-hidden rounded-xl bg-card text-foreground sm:flex-row"
+            className="flex max-h-[92vh] w-full max-w-5xl flex-col overflow-hidden rounded-xl bg-card sm:flex-row"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative flex aspect-square shrink-0 items-center justify-center bg-black sm:aspect-auto sm:w-[62%]">
