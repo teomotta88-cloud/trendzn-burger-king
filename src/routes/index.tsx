@@ -1,7 +1,7 @@
 import { pageMetadata } from "@/lib/pageMetadata";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { trendRealTime, trendAttuali, trendEvergreen, canaliInspo } from "@/lib/trends";
-import { ArrowRight, Zap, TrendingUp, Sparkles, CalendarDays } from "lucide-react";
+import { ArrowRight, Zap, TrendingUp, Sparkles, CalendarDays, Crown } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -13,25 +13,28 @@ export const Route = createFileRoute("/")({
 function Index() {
   const cards = [
     {
-      to: "/bk-taste",
-      label: "BK TASTE",
-      //count: trendRealTime.length,
+      to: "/king-eating",
+      label: "KING EATING",
       icon: Zap,
-      blurb: "Il momento in cui il morso rivela tutta la magia di Burger King: la carne alla griglia, il sapore inconfondibile del Whopper e la perfetta combinazione di ingredienti freschi.",
+      blurb: "Inspo di prodotto: i contenuti che mettono al centro il Whopper, la griglia e il momento del morso.",
     },
     {
-      to: "/bk-world",
-      label: "BK WORLD",
-      //count: trendAttuali.length,
+      to: "/kingdom-news",
+      label: "KINGDOM NEWS",
       icon: TrendingUp,
-      blurb: "Un universo visivo che valorizza l'iconico mondo Burger King e tutto ciò che rappresenta: la cottura alla fiamma, ingredienti genuini ed esperienza gustosa.",
+      blurb: "Idee di come vengono comunicati i lanci di prodotto e le promo.",
     },
     {
-      to: "/bk-people",
-      label: "BK PEOPLE",
-      // count: trendEvergreen.length,
+      to: "/king-life",
+      label: "KING LIFE",
       icon: Sparkles,
-      blurb: "Persone curiose e fedeli a se stesse che trovano equilibrio nei piccoli piaceri quotidiani.",
+      blurb: "Contenuti con trend presi dai momenti di consumo.",
+    },
+    {
+      to: "/king-attitude",
+      label: "KING ATTITUDE",
+      icon: Crown,
+      blurb: "Trend vari sul sentirsi Troppo King: l'attitudine e il modo di vivere il Troppo King.",
     },
     {
       to: "/competitor",

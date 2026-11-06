@@ -10,9 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as BkPeopleRouteImport } from './routes/bk-people'
-import { Route as BkTasteRouteImport } from './routes/bk-taste'
-import { Route as BkWorldRouteImport } from './routes/bk-world'
+import { Route as KingLifeRouteImport } from './routes/king-life'
+import { Route as KingEatingRouteImport } from './routes/king-eating'
+import { Route as KingdomNewsRouteImport } from './routes/kingdom-news'
+import { Route as KingAttitudeRouteImport } from './routes/king-attitude'
 import { Route as CanaliInspoIndexRouteImport } from './routes/canali-inspo.index'
 import { Route as CanaliInspoIdRouteImport } from './routes/canali-inspo.$id'
 import { Route as CompetitorIndexRouteImport } from './routes/competitor.index'
@@ -34,19 +35,24 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BkPeopleRoute = BkPeopleRouteImport.update({
-  id: '/bk-people',
-  path: '/bk-people',
+const KingLifeRoute = KingLifeRouteImport.update({
+  id: '/king-life',
+  path: '/king-life',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BkTasteRoute = BkTasteRouteImport.update({
-  id: '/bk-taste',
-  path: '/bk-taste',
+const KingEatingRoute = KingEatingRouteImport.update({
+  id: '/king-eating',
+  path: '/king-eating',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BkWorldRoute = BkWorldRouteImport.update({
-  id: '/bk-world',
-  path: '/bk-world',
+const KingdomNewsRoute = KingdomNewsRouteImport.update({
+  id: '/kingdom-news',
+  path: '/kingdom-news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KingAttitudeRoute = KingAttitudeRouteImport.update({
+  id: '/king-attitude',
+  path: '/king-attitude',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CanaliInspoIndexRoute = CanaliInspoIndexRouteImport.update({
@@ -137,9 +143,10 @@ const ApiPublicHooksUpdateTrendScoreRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/bk-people': typeof BkPeopleRoute
-  '/bk-taste': typeof BkTasteRoute
-  '/bk-world': typeof BkWorldRoute
+  '/king-life': typeof KingLifeRoute
+  '/king-eating': typeof KingEatingRoute
+  '/kingdom-news': typeof KingdomNewsRoute
+  '/king-attitude': typeof KingAttitudeRoute
   '/canali-inspo/$id': typeof CanaliInspoIdRoute
   '/competitor/$id': typeof CompetitorIdRoute
   '/canali-inspo/': typeof CanaliInspoIndexRoute
@@ -158,9 +165,10 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/bk-people': typeof BkPeopleRoute
-  '/bk-taste': typeof BkTasteRoute
-  '/bk-world': typeof BkWorldRoute
+  '/king-life': typeof KingLifeRoute
+  '/king-eating': typeof KingEatingRoute
+  '/kingdom-news': typeof KingdomNewsRoute
+  '/king-attitude': typeof KingAttitudeRoute
   '/canali-inspo/$id': typeof CanaliInspoIdRoute
   '/competitor/$id': typeof CompetitorIdRoute
   '/canali-inspo': typeof CanaliInspoIndexRoute
@@ -180,9 +188,10 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/bk-people': typeof BkPeopleRoute
-  '/bk-taste': typeof BkTasteRoute
-  '/bk-world': typeof BkWorldRoute
+  '/king-life': typeof KingLifeRoute
+  '/king-eating': typeof KingEatingRoute
+  '/kingdom-news': typeof KingdomNewsRoute
+  '/king-attitude': typeof KingAttitudeRoute
   '/canali-inspo/$id': typeof CanaliInspoIdRoute
   '/competitor/$id': typeof CompetitorIdRoute
   '/canali-inspo/': typeof CanaliInspoIndexRoute
@@ -203,9 +212,10 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/bk-people'
-    | '/bk-taste'
-    | '/bk-world'
+    | '/king-life'
+    | '/king-eating'
+    | '/kingdom-news'
+    | '/king-attitude'
     | '/canali-inspo/$id'
     | '/competitor/$id'
     | '/canali-inspo/'
@@ -224,9 +234,10 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/bk-people'
-    | '/bk-taste'
-    | '/bk-world'
+    | '/king-life'
+    | '/king-eating'
+    | '/kingdom-news'
+    | '/king-attitude'
     | '/canali-inspo/$id'
     | '/competitor/$id'
     | '/canali-inspo'
@@ -245,9 +256,10 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/bk-people'
-    | '/bk-taste'
-    | '/bk-world'
+    | '/king-life'
+    | '/king-eating'
+    | '/kingdom-news'
+    | '/king-attitude'
     | '/canali-inspo/$id'
     | '/competitor/$id'
     | '/canali-inspo/'
@@ -267,9 +279,10 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BkPeopleRoute: typeof BkPeopleRoute
-  BkTasteRoute: typeof BkTasteRoute
-  BkWorldRoute: typeof BkWorldRoute
+  KingLifeRoute: typeof KingLifeRoute
+  KingEatingRoute: typeof KingEatingRoute
+  KingdomNewsRoute: typeof KingdomNewsRoute
+  KingAttitudeRoute: typeof KingAttitudeRoute
   CanaliInspoIdRoute: typeof CanaliInspoIdRoute
   CompetitorIdRoute: typeof CompetitorIdRoute
   CanaliInspoIndexRoute: typeof CanaliInspoIndexRoute
@@ -296,25 +309,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/bk-people': {
-      id: '/bk-people'
-      path: '/bk-people'
-      fullPath: '/bk-people'
-      preLoaderRoute: typeof BkPeopleRouteImport
+    '/king-life': {
+      id: '/king-life'
+      path: '/king-life'
+      fullPath: '/king-life'
+      preLoaderRoute: typeof KingLifeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/bk-taste': {
-      id: '/bk-taste'
-      path: '/bk-taste'
-      fullPath: '/bk-taste'
-      preLoaderRoute: typeof BkTasteRouteImport
+    '/king-eating': {
+      id: '/king-eating'
+      path: '/king-eating'
+      fullPath: '/king-eating'
+      preLoaderRoute: typeof KingEatingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/bk-world': {
-      id: '/bk-world'
-      path: '/bk-world'
-      fullPath: '/bk-world'
-      preLoaderRoute: typeof BkWorldRouteImport
+    '/kingdom-news': {
+      id: '/kingdom-news'
+      path: '/kingdom-news'
+      fullPath: '/kingdom-news'
+      preLoaderRoute: typeof KingdomNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/king-attitude': {
+      id: '/king-attitude'
+      path: '/king-attitude'
+      fullPath: '/king-attitude'
+      preLoaderRoute: typeof KingAttitudeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/canali-inspo/': {
@@ -427,9 +447,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BkPeopleRoute: BkPeopleRoute,
-  BkTasteRoute: BkTasteRoute,
-  BkWorldRoute: BkWorldRoute,
+  KingLifeRoute: KingLifeRoute,
+  KingEatingRoute: KingEatingRoute,
+  KingdomNewsRoute: KingdomNewsRoute,
+  KingAttitudeRoute: KingAttitudeRoute,
   CanaliInspoIdRoute: CanaliInspoIdRoute,
   CompetitorIdRoute: CompetitorIdRoute,
   CanaliInspoIndexRoute: CanaliInspoIndexRoute,

@@ -1,14 +1,14 @@
 import { pageMetadata } from "@/lib/pageMetadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, useCallback } from "react";
-import { trendRealTime } from "@/lib/trends";
+import { trendAttuali } from "@/lib/trends";
 import type { TrendItem } from "@/lib/trends";
 import { TrendGrid } from "@/components/TrendGrid";
 import { supabase } from "@/integrations/supabase/client";
 
-export const Route = createFileRoute("/bk-taste")({
+export const Route = createFileRoute("/kingdom-news")({
   head: () => ({
-    meta: pageMetadata("BK TASTE — Burger King", "Trend social dedicati al gusto, al Whopper e alla cottura alla griglia."),
+    meta: pageMetadata("Kingdom News — Burger King", "Idee su come vengono comunicati lanci di prodotto e promo."),
   }),
   component: Page,
 });
@@ -27,7 +27,7 @@ type DbRow = {
 
 function rowToTrendItem(row: DbRow): TrendItem {
   return {
-    category: row.category ?? "Trend to Act",
+    category: row.category ?? "Trend to Adapt",
     links: [row.url],
     descrizione: null,
     nome_trend: row.title ?? null,
@@ -49,7 +49,7 @@ function Page() {
     supabase
       .from("trend_submissions")
       .select("id, url, title, category, industry, tags, score, created_at, raw_email")
-      .eq("section", "trend-real-time")
+      .eq("section", "trend-attuali")
       .eq("status", "approved")
       .order("created_at", { ascending: false })
       .then(({ data }) => {
@@ -71,14 +71,14 @@ function Page() {
   }, []);
 
   const dbIds: Record<string, string> = Object.fromEntries(dbRows.map((r) => [r.url, r.id]));
-  const allItems: TrendItem[] = [...dbRows.map(rowToTrendItem), ...trendRealTime];
+  const allItems: TrendItem[] = [...dbRows.map(rowToTrendItem), ...trendAttuali];
 
   return (
     <div className="space-y-8">
       <div className="space-y-2">
-        <h1 className="font-display text-3xl font-bold sm:text-4xl">BK TASTE</h1>
+        <h1 className="font-display text-3xl font-bold sm:text-4xl">Kingdom News</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
-          Il momento in cui il morso rivela tutta la magia di Burger King: la carne alla griglia, il sapore inconfondibile del Whopper e la perfetta combinazione di ingredienti freschi. Una celebrazione della golosità che mette il prodotto al centro della scena.
+          Idee di come vengono comunicati i lanci di prodotto e le promo. Format, linguaggi e meccaniche social da cui prendere ispirazione per annunciare le novità del Regno.
         </p>
       </div>
       {loading ? (

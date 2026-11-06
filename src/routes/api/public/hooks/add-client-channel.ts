@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { decodeBase64Utf8 } from "@/lib/base64";
 
-const GITHUB_REPO = "teomotta88-cloud/nostromo-trendzn";
+const GITHUB_REPO = "teomotta88-cloud/trendzn-burger-king";
 const TRENDS_PATH = "src/data/trends.json";
 
 const CANALE_TO_PLATFORM: Record<string, string> = {

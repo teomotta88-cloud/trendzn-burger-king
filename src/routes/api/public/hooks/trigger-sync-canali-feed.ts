@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-const GITHUB_REPO = "teomotta88-cloud/nostromo-trendzn";
+const GITHUB_REPO = "teomotta88-cloud/trendzn-burger-king";
 const WORKFLOW_FILE = "sync-canali-feed.yml";
 const REF = "main";
 

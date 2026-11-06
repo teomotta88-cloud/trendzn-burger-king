@@ -1,14 +1,14 @@
 import { pageMetadata } from "@/lib/pageMetadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, useCallback } from "react";
-import { trendEvergreen } from "@/lib/trends";
+import { trendAttitude } from "@/lib/trends";
 import type { TrendItem } from "@/lib/trends";
 import { TrendGrid } from "@/components/TrendGrid";
 import { supabase } from "@/integrations/supabase/client";
 
-export const Route = createFileRoute("/bk-people")({
+export const Route = createFileRoute("/bk-world")({
   head: () => ({
-    meta: pageMetadata("BK PEOPLE — Burger King", "Persone, cultura e piccoli piaceri quotidiani nel mondo Burger King."),
+    meta: pageMetadata("King Attitude — Burger King", "Trend sull'attitudine e sul modo di vivere il Troppo King."),
   }),
   component: Page,
 });
@@ -27,7 +27,7 @@ type DbRow = {
 
 function rowToTrendItem(row: DbRow): TrendItem {
   return {
-    category: row.category ?? "Cultural Formats",
+    category: row.category ?? "Trend Attitude",
     links: [row.url],
     descrizione: null,
     nome_trend: row.title ?? null,
@@ -49,7 +49,7 @@ function Page() {
     supabase
       .from("trend_submissions")
       .select("id, url, title, category, industry, tags, score, created_at, raw_email")
-      .eq("section", "trend-evergreen")
+      .eq("section", "trend-attitude")
       .eq("status", "approved")
       .order("created_at", { ascending: false })
       .then(({ data }) => {
@@ -71,14 +71,14 @@ function Page() {
   }, []);
 
   const dbIds: Record<string, string> = Object.fromEntries(dbRows.map((r) => [r.url, r.id]));
-  const allItems: TrendItem[] = [...dbRows.map(rowToTrendItem), ...trendEvergreen];
+  const allItems: TrendItem[] = [...dbRows.map(rowToTrendItem), ...trendAttitude];
 
   return (
     <div className="space-y-8">
       <div className="space-y-2">
-        <h1 className="font-display text-3xl font-bold sm:text-4xl">BK PEOPLE</h1>
+        <h1 className="font-display text-3xl font-bold sm:text-4xl">King Attitude</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
-          Persone curiose e fedeli a sé stesse che trovano equilibrio nei piccoli piaceri quotidiani. Per loro, concedersi un momento Burger King non è un'eccezione, ma parte di uno stile di vita autentico e senza compromessi.
+          Trend vari sul sentirsi Troppo King: l'attitudine, il modo di vivere il Troppo King e le storie di chi lo incarna ogni giorno.
         </p>
       </div>
       {loading ? (
