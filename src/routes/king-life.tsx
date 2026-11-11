@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { trendEvergreen } from "@/lib/trends";
 import type { TrendItem } from "@/lib/trends";
 import { TrendGrid } from "@/components/TrendGrid";
+import { ManualSubmitDialog } from "@/components/ManualSubmitDialog";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/king-life")({
@@ -75,12 +76,15 @@ function Page() {
 
   return (
     <div className="space-y-8">
-      <div className="space-y-2">
+      <header className="flex flex-wrap items-start justify-between gap-4">
+        <div className="space-y-2">
         <h1 className="font-display text-3xl font-bold sm:text-4xl">King Life</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
           Contenuti con trend presi dai momenti di consumo: le occasioni, i gesti e le situazioni quotidiane in cui le persone vivono Burger King.
         </p>
-      </div>
+        </div>
+        <ManualSubmitDialog section="trend-evergreen" onSuccess={fetchRows} />
+      </header>
       {loading ? (
         <div className="text-sm text-muted-foreground">Caricamento…</div>
       ) : (
