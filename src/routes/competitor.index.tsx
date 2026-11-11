@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState, useEffect, useCallback, useRef } from "react";
 import { PlatformIcon } from "@/components/SocialEmbed";
 import { Search, Trash2 } from "lucide-react";
+import { ManualSubmitDialog } from "@/components/ManualSubmitDialog";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/competitor/")({
@@ -245,6 +246,7 @@ function CompetitorView({ tab, setTab }: { tab?: Tab; setTab?: (t: Tab) => void 
             Brand e competitor monitorati automaticamente.
           </p>
         </div>
+        <ManualSubmitDialog section="influencer" onSuccess={handleManualSuccess} />
       </header>
 
       {tab !== undefined && setTab && (
