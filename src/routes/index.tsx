@@ -19,8 +19,8 @@ function Index() {
       blurb: "Inspo di prodotto: i contenuti che mettono al centro il Whopper, la griglia e il momento del morso.",
     },
     {
-      to: "/kingdom-news",
-      label: "KINGDOM NEWS",
+      to: "/king-news",
+      label: "KING NEWS",
       icon: TrendingUp,
       blurb: "Idee di come vengono comunicati i lanci di prodotto e le promo.",
     },

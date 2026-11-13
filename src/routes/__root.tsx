@@ -132,7 +132,7 @@ function RootComponent() {
 const NAV_ITEMS = [
   { to: "/", label: "Home" },
   { to: "/king-taste", label: "KING TASTE" },
-  { to: "/kingdom-news", label: "KINGDOM NEWS" },
+  { to: "/king-news", label: "KING NEWS" },
   { to: "/king-life", label: "KING LIFE" },
   { to: "/king-mood", label: "KING MOOD" },
   { to: "/competitor", label: "Competitor" },
