@@ -12,7 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as KingLifeRouteImport } from './routes/king-life'
 import { Route as KingTasteRouteImport } from './routes/king-taste'
-import { Route as KingdomNewsRouteImport } from './routes/kingdom-news'
+import { Route as KingNewsRouteImport } from './routes/king-news'
 import { Route as KingMoodRouteImport } from './routes/king-mood'
 import { Route as CanaliInspoIndexRouteImport } from './routes/canali-inspo.index'
 import { Route as CanaliInspoIdRouteImport } from './routes/canali-inspo.$id'
@@ -45,9 +45,9 @@ const KingTasteRoute = KingTasteRouteImport.update({
   path: '/king-taste',
   getParentRoute: () => rootRouteImport,
 } as any)
-const KingdomNewsRoute = KingdomNewsRouteImport.update({
-  id: '/kingdom-news',
-  path: '/kingdom-news',
+const KingNewsRoute = KingNewsRouteImport.update({
+  id: '/king-news',
+  path: '/king-news',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KingMoodRoute = KingMoodRouteImport.update({
@@ -145,7 +145,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/king-life': typeof KingLifeRoute
   '/king-taste': typeof KingTasteRoute
-  '/kingdom-news': typeof KingdomNewsRoute
+  '/king-news': typeof KingNewsRoute
   '/king-mood': typeof KingMoodRoute
   '/canali-inspo/$id': typeof CanaliInspoIdRoute
   '/competitor/$id': typeof CompetitorIdRoute
@@ -167,7 +167,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/king-life': typeof KingLifeRoute
   '/king-taste': typeof KingTasteRoute
-  '/kingdom-news': typeof KingdomNewsRoute
+  '/king-news': typeof KingNewsRoute
   '/king-mood': typeof KingMoodRoute
   '/canali-inspo/$id': typeof CanaliInspoIdRoute
   '/competitor/$id': typeof CompetitorIdRoute
@@ -190,7 +190,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/king-life': typeof KingLifeRoute
   '/king-taste': typeof KingTasteRoute
-  '/kingdom-news': typeof KingdomNewsRoute
+  '/king-news': typeof KingNewsRoute
   '/king-mood': typeof KingMoodRoute
   '/canali-inspo/$id': typeof CanaliInspoIdRoute
   '/competitor/$id': typeof CompetitorIdRoute
@@ -214,7 +214,7 @@ export interface FileRouteTypes {
     | '/'
     | '/king-life'
     | '/king-taste'
-    | '/kingdom-news'
+    | '/king-news'
     | '/king-mood'
     | '/canali-inspo/$id'
     | '/competitor/$id'
@@ -236,7 +236,7 @@ export interface FileRouteTypes {
     | '/'
     | '/king-life'
     | '/king-taste'
-    | '/kingdom-news'
+    | '/king-news'
     | '/king-mood'
     | '/canali-inspo/$id'
     | '/competitor/$id'
@@ -258,7 +258,7 @@ export interface FileRouteTypes {
     | '/'
     | '/king-life'
     | '/king-taste'
-    | '/kingdom-news'
+    | '/king-news'
     | '/king-mood'
     | '/canali-inspo/$id'
     | '/competitor/$id'
@@ -281,7 +281,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   KingLifeRoute: typeof KingLifeRoute
   KingTasteRoute: typeof KingTasteRoute
-  KingdomNewsRoute: typeof KingdomNewsRoute
+  KingNewsRoute: typeof KingNewsRoute
   KingMoodRoute: typeof KingMoodRoute
   CanaliInspoIdRoute: typeof CanaliInspoIdRoute
   CompetitorIdRoute: typeof CompetitorIdRoute
@@ -323,11 +323,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KingTasteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/kingdom-news': {
-      id: '/kingdom-news'
-      path: '/kingdom-news'
-      fullPath: '/kingdom-news'
-      preLoaderRoute: typeof KingdomNewsRouteImport
+    '/king-news': {
+      id: '/king-news'
+      path: '/king-news'
+      fullPath: '/king-news'
+      preLoaderRoute: typeof KingNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/king-mood': {
@@ -449,7 +449,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   KingLifeRoute: KingLifeRoute,
   KingTasteRoute: KingTasteRoute,
-  KingdomNewsRoute: KingdomNewsRoute,
+  KingNewsRoute: KingNewsRoute,
   KingMoodRoute: KingMoodRoute,
   CanaliInspoIdRoute: CanaliInspoIdRoute,
   CompetitorIdRoute: CompetitorIdRoute,

@@ -29,14 +29,12 @@ function formatDate(dateStr: string | null | undefined): string {
   }
 }
 
-const PAGE_SIZE = 9;
 
 function Page() {
   const { id } = Route.useParams();
   const [canale, setCanale] = useState<CanaleInspo | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -71,10 +69,6 @@ function Page() {
     return allPosts.filter((a) => a.caption?.toLowerCase().includes(q) || a.handle?.toLowerCase().includes(q));
   }, [allPosts, search]);
 
-  // Reset paginazione quando cambia la ricerca
-  useEffect(() => {
-    setVisibleCount(PAGE_SIZE);
-  }, [search]);
 
   const profileLinks = useMemo(() => (canale ? canale.accounts.filter((a) => !POST_URL_RE.test(a.url)) : []), [canale]);
 
@@ -98,8 +92,7 @@ function Page() {
       .replace(/[^a-zA-Z0-9]/g, "")
       .charAt(0)
       .toUpperCase() || "•";
-  const visiblePosts = filteredPosts.slice(0, visibleCount);
-  const hasMore = visibleCount < filteredPosts.length;
+  const visiblePosts = filteredPosts;
 
   return (
     <div className="space-y-8">
@@ -152,7 +145,7 @@ function Page() {
                 />
               </div>
               <span className="text-xs text-muted-foreground">
-                {Math.min(visibleCount, filteredPosts.length)} / {filteredPosts.length}
+                {filteredPosts.length}
               </span>
             </div>
           )}
@@ -212,16 +205,6 @@ function Page() {
               })}
             </div>
 
-            {hasMore && (
-              <div className="flex justify-center pt-2">
-                <button
-                  onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-                  className="rounded-full border border-border bg-card px-6 py-2.5 text-sm font-medium text-foreground transition hover:border-primary"
-                >
-                  Carica altri ({filteredPosts.length - visibleCount} rimanenti)
-                </button>
-              </div>
-            )}
           </>
         )}
       </section>
