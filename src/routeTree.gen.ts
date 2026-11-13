@@ -11,9 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as KingLifeRouteImport } from './routes/king-life'
-import { Route as KingEatingRouteImport } from './routes/king-eating'
+import { Route as KingTasteRouteImport } from './routes/king-taste'
 import { Route as KingdomNewsRouteImport } from './routes/kingdom-news'
-import { Route as KingAttitudeRouteImport } from './routes/king-attitude'
+import { Route as KingMoodRouteImport } from './routes/king-mood'
 import { Route as CanaliInspoIndexRouteImport } from './routes/canali-inspo.index'
 import { Route as CanaliInspoIdRouteImport } from './routes/canali-inspo.$id'
 import { Route as CompetitorIndexRouteImport } from './routes/competitor.index'
@@ -40,9 +40,9 @@ const KingLifeRoute = KingLifeRouteImport.update({
   path: '/king-life',
   getParentRoute: () => rootRouteImport,
 } as any)
-const KingEatingRoute = KingEatingRouteImport.update({
-  id: '/king-eating',
-  path: '/king-eating',
+const KingTasteRoute = KingTasteRouteImport.update({
+  id: '/king-taste',
+  path: '/king-taste',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KingdomNewsRoute = KingdomNewsRouteImport.update({
@@ -50,9 +50,9 @@ const KingdomNewsRoute = KingdomNewsRouteImport.update({
   path: '/kingdom-news',
   getParentRoute: () => rootRouteImport,
 } as any)
-const KingAttitudeRoute = KingAttitudeRouteImport.update({
-  id: '/king-attitude',
-  path: '/king-attitude',
+const KingMoodRoute = KingMoodRouteImport.update({
+  id: '/king-mood',
+  path: '/king-mood',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CanaliInspoIndexRoute = CanaliInspoIndexRouteImport.update({
@@ -144,9 +144,9 @@ const ApiPublicHooksUpdateTrendScoreRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/king-life': typeof KingLifeRoute
-  '/king-eating': typeof KingEatingRoute
+  '/king-taste': typeof KingTasteRoute
   '/kingdom-news': typeof KingdomNewsRoute
-  '/king-attitude': typeof KingAttitudeRoute
+  '/king-mood': typeof KingMoodRoute
   '/canali-inspo/$id': typeof CanaliInspoIdRoute
   '/competitor/$id': typeof CompetitorIdRoute
   '/canali-inspo/': typeof CanaliInspoIndexRoute
@@ -166,9 +166,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/king-life': typeof KingLifeRoute
-  '/king-eating': typeof KingEatingRoute
+  '/king-taste': typeof KingTasteRoute
   '/kingdom-news': typeof KingdomNewsRoute
-  '/king-attitude': typeof KingAttitudeRoute
+  '/king-mood': typeof KingMoodRoute
   '/canali-inspo/$id': typeof CanaliInspoIdRoute
   '/competitor/$id': typeof CompetitorIdRoute
   '/canali-inspo': typeof CanaliInspoIndexRoute
@@ -189,9 +189,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/king-life': typeof KingLifeRoute
-  '/king-eating': typeof KingEatingRoute
+  '/king-taste': typeof KingTasteRoute
   '/kingdom-news': typeof KingdomNewsRoute
-  '/king-attitude': typeof KingAttitudeRoute
+  '/king-mood': typeof KingMoodRoute
   '/canali-inspo/$id': typeof CanaliInspoIdRoute
   '/competitor/$id': typeof CompetitorIdRoute
   '/canali-inspo/': typeof CanaliInspoIndexRoute
@@ -213,9 +213,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/king-life'
-    | '/king-eating'
+    | '/king-taste'
     | '/kingdom-news'
-    | '/king-attitude'
+    | '/king-mood'
     | '/canali-inspo/$id'
     | '/competitor/$id'
     | '/canali-inspo/'
@@ -235,9 +235,9 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/king-life'
-    | '/king-eating'
+    | '/king-taste'
     | '/kingdom-news'
-    | '/king-attitude'
+    | '/king-mood'
     | '/canali-inspo/$id'
     | '/competitor/$id'
     | '/canali-inspo'
@@ -257,9 +257,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/king-life'
-    | '/king-eating'
+    | '/king-taste'
     | '/kingdom-news'
-    | '/king-attitude'
+    | '/king-mood'
     | '/canali-inspo/$id'
     | '/competitor/$id'
     | '/canali-inspo/'
@@ -280,9 +280,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   KingLifeRoute: typeof KingLifeRoute
-  KingEatingRoute: typeof KingEatingRoute
+  KingTasteRoute: typeof KingTasteRoute
   KingdomNewsRoute: typeof KingdomNewsRoute
-  KingAttitudeRoute: typeof KingAttitudeRoute
+  KingMoodRoute: typeof KingMoodRoute
   CanaliInspoIdRoute: typeof CanaliInspoIdRoute
   CompetitorIdRoute: typeof CompetitorIdRoute
   CanaliInspoIndexRoute: typeof CanaliInspoIndexRoute
@@ -316,11 +316,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KingLifeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/king-eating': {
-      id: '/king-eating'
-      path: '/king-eating'
-      fullPath: '/king-eating'
-      preLoaderRoute: typeof KingEatingRouteImport
+    '/king-taste': {
+      id: '/king-taste'
+      path: '/king-taste'
+      fullPath: '/king-taste'
+      preLoaderRoute: typeof KingTasteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kingdom-news': {
@@ -330,11 +330,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KingdomNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/king-attitude': {
-      id: '/king-attitude'
-      path: '/king-attitude'
-      fullPath: '/king-attitude'
-      preLoaderRoute: typeof KingAttitudeRouteImport
+    '/king-mood': {
+      id: '/king-mood'
+      path: '/king-mood'
+      fullPath: '/king-mood'
+      preLoaderRoute: typeof KingMoodRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/canali-inspo/': {
@@ -448,9 +448,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   KingLifeRoute: KingLifeRoute,
-  KingEatingRoute: KingEatingRoute,
+  KingTasteRoute: KingTasteRoute,
   KingdomNewsRoute: KingdomNewsRoute,
-  KingAttitudeRoute: KingAttitudeRoute,
+  KingMoodRoute: KingMoodRoute,
   CanaliInspoIdRoute: CanaliInspoIdRoute,
   CompetitorIdRoute: CompetitorIdRoute,
   CanaliInspoIndexRoute: CanaliInspoIndexRoute,
