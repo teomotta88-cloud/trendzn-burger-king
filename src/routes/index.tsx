@@ -13,8 +13,8 @@ export const Route = createFileRoute("/")({
 function Index() {
   const cards = [
     {
-      to: "/king-eating",
-      label: "KING EATING",
+      to: "/king-taste",
+      label: "KING TASTE",
       icon: Zap,
       blurb: "Inspo di prodotto: i contenuti che mettono al centro il Whopper, la griglia e il momento del morso.",
     },
@@ -31,8 +31,8 @@ function Index() {
       blurb: "Contenuti con trend presi dai momenti di consumo.",
     },
     {
-      to: "/king-attitude",
-      label: "KING ATTITUDE",
+      to: "/king-mood",
+      label: "KING MOOD",
       icon: Crown,
       blurb: "Trend vari sul sentirsi Troppo King: l'attitudine e il modo di vivere il Troppo King.",
     },

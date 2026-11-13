@@ -1,15 +1,15 @@
 import { pageMetadata } from "@/lib/pageMetadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, useCallback } from "react";
-import { trendRealTime } from "@/lib/trends";
+import { trendMood } from "@/lib/trends";
 import type { TrendItem } from "@/lib/trends";
 import { TrendGrid } from "@/components/TrendGrid";
 import { ManualSubmitDialog } from "@/components/ManualSubmitDialog";
 import { supabase } from "@/integrations/supabase/client";
 
-export const Route = createFileRoute("/king-eating")({
+export const Route = createFileRoute("/bk-world")({
   head: () => ({
-    meta: pageMetadata("King Eating — Burger King", "Inspo di prodotto: trend e idee per raccontare i prodotti Burger King."),
+    meta: pageMetadata("King Mood — Burger King", "Trend sull'attitudine e sul modo di vivere il Troppo King."),
   }),
   component: Page,
 });
@@ -28,7 +28,7 @@ type DbRow = {
 
 function rowToTrendItem(row: DbRow): TrendItem {
   return {
-    category: row.category ?? "Trend to Act",
+    category: row.category ?? "Trend Mood",
     links: [row.url],
     descrizione: null,
     nome_trend: row.title ?? null,
@@ -50,7 +50,7 @@ function Page() {
     supabase
       .from("trend_submissions")
       .select("id, url, title, category, industry, tags, score, created_at, raw_email")
-      .eq("section", "trend-real-time")
+      .eq("section", "trend-mood")
       .eq("status", "approved")
       .order("created_at", { ascending: false })
       .then(({ data }) => {
@@ -72,18 +72,18 @@ function Page() {
   }, []);
 
   const dbIds: Record<string, string> = Object.fromEntries(dbRows.map((r) => [r.url, r.id]));
-  const allItems: TrendItem[] = [...dbRows.map(rowToTrendItem), ...trendRealTime];
+  const allItems: TrendItem[] = [...dbRows.map(rowToTrendItem), ...trendMood];
 
   return (
     <div className="space-y-8">
       <header className="flex flex-wrap items-start justify-between gap-4">
         <div className="space-y-2">
-        <h1 className="font-display text-3xl font-bold sm:text-4xl">King Eating</h1>
+        <h1 className="font-display text-3xl font-bold sm:text-4xl">King Mood</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
-          Inspo di prodotto. Trend e contenuti che mettono al centro il prodotto Burger King: il Whopper, la carne alla griglia, gli ingredienti e il momento in cui il morso rivela tutta la magia.
+          Trend vari sul sentirsi Troppo King: l'attitudine, il modo di vivere il Troppo King e le storie di chi lo incarna ogni giorno.
         </p>
         </div>
-        <ManualSubmitDialog section="trend-real-time" onSuccess={fetchRows} />
+        <ManualSubmitDialog section="trend-mood" onSuccess={fetchRows} />
       </header>
       {loading ? (
         <div className="text-sm text-muted-foreground">Caricamento…</div>

@@ -131,10 +131,10 @@ function RootComponent() {
 
 const NAV_ITEMS = [
   { to: "/", label: "Home" },
-  { to: "/king-eating", label: "KING EATING" },
+  { to: "/king-taste", label: "KING TASTE" },
   { to: "/kingdom-news", label: "KINGDOM NEWS" },
   { to: "/king-life", label: "KING LIFE" },
-  { to: "/king-attitude", label: "KING ATTITUDE" },
+  { to: "/king-mood", label: "KING MOOD" },
   { to: "/competitor", label: "Competitor" },
   { to: "/piano-editoriale", label: "Piano Editoriale" },
 ];

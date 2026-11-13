@@ -7,7 +7,7 @@ const VALID_SECTIONS = [
   "trend-real-time",
   "trend-attuali",
   "trend-evergreen",
-  "trend-attitude",
+  "trend-mood",
   "canali-inspo",
   "influencer",
 ] as const;
@@ -77,7 +77,7 @@ const CATEGORY_LABEL: Record<Section, string> = {
   "trend-real-time": "Trend Real Time",
   "trend-attuali": "Trend Attuali",
   "trend-evergreen": "Trend Evergreen",
-  "trend-attitude": "Trend Attitude",
+  "trend-mood": "Trend Mood",
   "canali-inspo": "Canali Inspo",
   influencer: "Influencer",
 };
