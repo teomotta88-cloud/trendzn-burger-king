@@ -10,7 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as KingLifeRouteImport } from './routes/king-life'
+import { Route as EverydayKingRouteImport } from './routes/everyday-king'
 import { Route as KingTasteRouteImport } from './routes/king-taste'
 import { Route as KingNewsRouteImport } from './routes/king-news'
 import { Route as KingMoodRouteImport } from './routes/king-mood'
@@ -35,9 +35,9 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const KingLifeRoute = KingLifeRouteImport.update({
-  id: '/king-life',
-  path: '/king-life',
+const EverydayKingRoute = EverydayKingRouteImport.update({
+  id: '/everyday-king',
+  path: '/everyday-king',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KingTasteRoute = KingTasteRouteImport.update({
@@ -143,7 +143,7 @@ const ApiPublicHooksUpdateTrendScoreRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/king-life': typeof KingLifeRoute
+  '/everyday-king': typeof EverydayKingRoute
   '/king-taste': typeof KingTasteRoute
   '/king-news': typeof KingNewsRoute
   '/king-mood': typeof KingMoodRoute
@@ -165,7 +165,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/king-life': typeof KingLifeRoute
+  '/everyday-king': typeof EverydayKingRoute
   '/king-taste': typeof KingTasteRoute
   '/king-news': typeof KingNewsRoute
   '/king-mood': typeof KingMoodRoute
@@ -188,7 +188,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/king-life': typeof KingLifeRoute
+  '/everyday-king': typeof EverydayKingRoute
   '/king-taste': typeof KingTasteRoute
   '/king-news': typeof KingNewsRoute
   '/king-mood': typeof KingMoodRoute
@@ -212,7 +212,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/king-life'
+    | '/everyday-king'
     | '/king-taste'
     | '/king-news'
     | '/king-mood'
@@ -234,7 +234,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/king-life'
+    | '/everyday-king'
     | '/king-taste'
     | '/king-news'
     | '/king-mood'
@@ -256,7 +256,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/king-life'
+    | '/everyday-king'
     | '/king-taste'
     | '/king-news'
     | '/king-mood'
@@ -279,7 +279,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  KingLifeRoute: typeof KingLifeRoute
+  EverydayKingRoute: typeof EverydayKingRoute
   KingTasteRoute: typeof KingTasteRoute
   KingNewsRoute: typeof KingNewsRoute
   KingMoodRoute: typeof KingMoodRoute
@@ -309,11 +309,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/king-life': {
-      id: '/king-life'
-      path: '/king-life'
-      fullPath: '/king-life'
-      preLoaderRoute: typeof KingLifeRouteImport
+    '/everyday-king': {
+      id: '/everyday-king'
+      path: '/everyday-king'
+      fullPath: '/everyday-king'
+      preLoaderRoute: typeof EverydayKingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/king-taste': {
@@ -447,7 +447,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  KingLifeRoute: KingLifeRoute,
+  EverydayKingRoute: EverydayKingRoute,
   KingTasteRoute: KingTasteRoute,
   KingNewsRoute: KingNewsRoute,
   KingMoodRoute: KingMoodRoute,

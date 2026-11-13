@@ -25,8 +25,8 @@ function Index() {
       blurb: "Idee di come vengono comunicati i lanci di prodotto e le promo.",
     },
     {
-      to: "/king-life",
-      label: "KING LIFE",
+      to: "/everyday-king",
+      label: "EVERYDAY KING",
       icon: Sparkles,
       blurb: "Contenuti con trend presi dai momenti di consumo.",
     },

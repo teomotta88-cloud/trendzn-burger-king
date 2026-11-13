@@ -133,7 +133,7 @@ const NAV_ITEMS = [
   { to: "/", label: "Home" },
   { to: "/king-taste", label: "KING TASTE" },
   { to: "/king-news", label: "KING NEWS" },
-  { to: "/king-life", label: "KING LIFE" },
+  { to: "/everyday-king", label: "EVERYDAY KING" },
   { to: "/king-mood", label: "KING MOOD" },
   { to: "/competitor", label: "Competitor" },
   { to: "/piano-editoriale", label: "Piano Editoriale" },

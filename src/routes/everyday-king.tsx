@@ -7,9 +7,9 @@ import { TrendGrid } from "@/components/TrendGrid";
 import { ManualSubmitDialog } from "@/components/ManualSubmitDialog";
 import { supabase } from "@/integrations/supabase/client";
 
-export const Route = createFileRoute("/king-life")({
+export const Route = createFileRoute("/everyday-king")({
   head: () => ({
-    meta: pageMetadata("King Life — Burger King", "Contenuti e trend nati dai momenti di consumo."),
+    meta: pageMetadata("Everyday King — Burger King", "Contenuti e trend nati dai momenti di consumo."),
   }),
   component: Page,
 });
@@ -78,7 +78,7 @@ function Page() {
     <div className="space-y-8">
       <header className="flex flex-wrap items-start justify-between gap-4">
         <div className="space-y-2">
-        <h1 className="font-display text-3xl font-bold sm:text-4xl">King Life</h1>
+        <h1 className="font-display text-3xl font-bold sm:text-4xl">Everyday King</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
           Contenuti con trend presi dai momenti di consumo: le occasioni, i gesti e le situazioni quotidiane in cui le persone vivono Burger King.
         </p>
