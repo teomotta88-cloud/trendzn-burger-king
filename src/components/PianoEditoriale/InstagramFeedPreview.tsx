@@ -232,7 +232,7 @@ export function InstagramFeedPreview({ posts }: { posts: EditorialPost[] }) {
               key={p.id}
               type="button"
               onClick={() => openPost(p.id)}
-              className="relative aspect-square overflow-hidden bg-muted"
+              className="relative aspect-[4/5] overflow-hidden bg-muted"
             >
               {first && isVideo(first.url, first.type) ? (
                 <VideoPreview src={first.url} className="size-full object-cover" />
