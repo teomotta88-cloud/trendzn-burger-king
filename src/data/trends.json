@@ -3,7 +3,256 @@
   "trend_attuali": [],
   "trend_evergreen": [],
   "canali_inspo": [],
-  "influencer_profiles": [],
+  "influencer_profiles": [
+    {
+      "id": "mcdonaldsitalia",
+      "name": "Competitor",
+      "cliente": "mcdonaldsitalia",
+      "urls": [
+        "https://www.instagram.com/mcdonaldsitalia"
+      ],
+      "descrizione": null,
+      "accounts": [
+        {
+          "platform": "instagram",
+          "handle": "mcdonaldsitalia",
+          "url": "https://www.instagram.com/mcdonaldsitalia"
+        },
+        {
+          "platform": "instagram",
+          "handle": "mcdonaldsitalia",
+          "url": "https://www.instagram.com/p/DfruKepoSYW/",
+          "date": "2026-11-13T13:21:05+00:00",
+          "caption": "Poteva andarci peggio 🙄\n\n\n\n#mcdonaldsitalia #mclovers #imlovinit"
+        },
+        {
+          "platform": "instagram",
+          "handle": "mcdonaldsitalia",
+          "url": "https://www.instagram.com/p/DfrXfkPEQSh/",
+          "date": "2026-11-13T10:00:33+00:00",
+          "caption": "Oggi la nostra gentilezza &egrave; a 3000 e la useremo per rispondere a tuuutti i vostri commenti🩷✨\n\n\n\n#mcdonaldsitalia #mclovers #imlovinit"
+        },
+        {
+          "platform": "instagram",
+          "handle": "mcdonaldsitalia",
+          "url": "https://www.instagram.com/p/DfmuVJGCDpa/",
+          "date": "2026-11-11T14:43:54+00:00",
+          "caption": "Quanti single qui?✋🏻\n\n\n\n#mcdonaldsitalia #mclovers #imlovinit"
+        },
+        {
+          "platform": "instagram",
+          "handle": "mcdonaldsitalia",
+          "url": "https://www.instagram.com/p/DfmKui-DfLr/",
+          "date": "2026-11-11T09:32:48+00:00",
+          "caption": "Che fai? Non prendi il tuo McMenu&reg; Large preferito e la McDrive&reg; Bag?😏🏎️\n\nIn edizione limitata firmata McDonald&rsquo;s e Coca-Cola&reg;.\n\n\n\n#mcdrive #mcdonaldsitalia #mclovers #imlovinit"
+        },
+        {
+          "platform": "instagram",
+          "handle": "mcdonaldsitalia",
+          "url": "https://www.instagram.com/p/DfhA07PDWLa/",
+          "date": "2026-11-09T09:30:05+00:00",
+          "caption": "Presto con il tuo ordine al McDrive&reg; porterai con te qualcosa di ancora pi&ugrave; speciale. 🚗\n\n\n\n#mcdrive #mcdonaldsitalia #mclovers #imlovinit"
+        },
+        {
+          "platform": "instagram",
+          "handle": "mcdonaldsitalia",
+          "url": "https://www.instagram.com/p/DfZSNqwIO7t/",
+          "date": "2026-11-06T09:31:39+00:00",
+          "caption": "Tagga l&rsquo;amico che te li deve offrire 👉🏻👈🏻\n\n\n\n#mcdonaldsitalia #mclovers #imlovinit"
+        }
+      ]
+    },
+    {
+      "id": "kfc-italia",
+      "name": "Competitor",
+      "cliente": "kfc_italia",
+      "urls": [
+        "https://www.instagram.com/kfc_italia"
+      ],
+      "descrizione": null,
+      "accounts": [
+        {
+          "platform": "instagram",
+          "handle": "kfc_italia",
+          "url": "https://www.instagram.com/kfc_italia"
+        },
+        {
+          "platform": "instagram",
+          "handle": "kfc_italia",
+          "url": "https://www.instagram.com/p/Dfmv9iqG14r/",
+          "date": "2026-11-11T14:58:10+00:00",
+          "caption": "Tanto grandi quanto buoni 🔥 \n\nProvali fino al 30 Novembre, a soli 8,95&euro;"
+        },
+        {
+          "platform": "instagram",
+          "handle": "kfc_italia",
+          "url": "https://www.instagram.com/p/Dfjt7ORmzca/",
+          "date": "2026-11-10T10:42:38+00:00",
+          "caption": "Spoiler: pi&ugrave; ordini, pi&ugrave; risparmi."
+        },
+        {
+          "platform": "instagram",
+          "handle": "kfc_italia",
+          "url": "https://www.instagram.com/p/DfXeW5KN1Ds/",
+          "date": "2026-11-05T16:37:26+00:00",
+          "caption": "Adv | CHE SECCHIATA!\n\n\n\n&Egrave; arrivata una super PROMO da @kfc_italia 🤫 Ben TRE bucket di pollo fritto a 8,95&euro; l&rsquo;uno: \n\nScegli la tua preferita:\n\n\n\n- 12 TENDER\n\n- 30 NUGGETS\n\n- 20 ALETTE PICCANTI\n\n\n\nE se vuoi fare le cose in grande, puoi completare la tua secchiata con patatine, bibita e salsa a scelta 🍟\n\nTi consiglio di approfittarne subito! L&rsquo;offerta &egrave; valida fino al 30 novembre 🏃🏻&zwj;♂️\n\n\n\n#roma #kfcitalia #bucket #pollofritto #friedchicken"
+        },
+        {
+          "platform": "instagram",
+          "handle": "kfc_italia",
+          "url": "https://www.instagram.com/p/DfXZNKHFJvN/",
+          "date": "2026-11-05T15:50:57+00:00",
+          "caption": "Una secchiata di Pollo! Il pi&ugrave; buono di tutti, al prezzo pi&ugrave; basso di sempre 🔥"
+        },
+        {
+          "platform": "instagram",
+          "handle": "kfc_italia",
+          "url": "https://www.instagram.com/p/DfSGO78ALa7/",
+          "date": "2026-11-03T14:29:01+00:00",
+          "caption": "Pronti a kioskare"
+        },
+        {
+          "platform": "instagram",
+          "handle": "kfc_italia",
+          "url": "https://www.instagram.com/p/DfPtoaPDtp2/",
+          "date": "2026-11-02T16:15:16+00:00",
+          "caption": "Vendere l&rsquo;anima per i tender croccanti e le salsine della promo di Halloween: ✅"
+        }
+      ]
+    },
+    {
+      "id": "fiveguysitaly",
+      "name": "Competitor",
+      "cliente": "fiveguysitaly",
+      "urls": [
+        "https://www.instagram.com/fiveguysitaly"
+      ],
+      "descrizione": null,
+      "accounts": [
+        {
+          "platform": "instagram",
+          "handle": "fiveguysitaly",
+          "url": "https://www.instagram.com/fiveguysitaly"
+        },
+        {
+          "platform": "instagram",
+          "handle": "fiveguysitaly",
+          "url": "https://www.instagram.com/p/Dfp7UxJlzmC/",
+          "date": "2026-11-13T11:00:01+00:00",
+          "caption": "Hot dog con cheese o senza?\n\nCommenta con \"🌭\" o con \"🌭🧀\"\n\n________\n\n#FiveGuys #FiveGuysItaly #Milano #Torino #Roma #CampiBisenzio #Firenze #Venezia #Napoli #fiveguysburgers #fiveguysburgersandfries #5guys #burgersandfries #burgerlovers"
+        },
+        {
+          "platform": "instagram",
+          "handle": "fiveguysitaly",
+          "url": "https://www.instagram.com/p/DfkCWvEl2gJ/",
+          "date": "2026-11-11T11:00:01+00:00",
+          "caption": "La faccia di chi ha appena dato il primo morso🍔\n\n(📸: @diogoalmeidamartins)\n\n________\n\n#FiveGuys #FiveGuysItaly #Milano #Torino #Roma #CampiBisenzio #Firenze #Venezia #Napoli #fiveguysburgers #fiveguysburgersandfries #5guys #burgersandfries #burgerlovers"
+        },
+        {
+          "platform": "instagram",
+          "handle": "fiveguysitaly",
+          "url": "https://www.instagram.com/p/DfhLOdsDN9_/",
+          "date": "2026-11-09T11:01:14+00:00",
+          "caption": "Una per il burger, l&rsquo;altra per le fries🍔🥔\n\n________\n\n#FiveGuys #FiveGuysItaly #Milano #Torino #Roma #CampiBisenzio #Firenze #Venezia #Napoli #fiveguysburgers #fiveguysburgersandfries #5guys #burgersandfries #burgerlovers"
+        },
+        {
+          "platform": "instagram",
+          "handle": "fiveguysitaly",
+          "url": "https://www.instagram.com/p/DfVC4mVlyeD/",
+          "date": "2026-11-05T11:00:01+00:00",
+          "caption": "Matchy matchy con il tuo posto preferito🫶\n\n\n\n(📸: @mayfiletti)\n\n________\n\n#FiveGuys #FiveGuysItaly #Milano #Torino #Roma #CampiBisenzio #Firenze #Venezia #Napoli #fiveguysburgers #fiveguysburgersandfries #5guys #burgersandfries #burgerlovers"
+        },
+        {
+          "platform": "instagram",
+          "handle": "fiveguysitaly",
+          "url": "https://www.instagram.com/p/DfRufeUCkG-/",
+          "date": "2026-11-03T11:01:40+00:00",
+          "caption": "Da Five Guys, anche l&rsquo;attesa merita il suo snack🥜\n\n________\n\n#FiveGuys #FiveGuysItaly #Milano #Torino #Roma #CampiBisenzio #Firenze #Venezia #Napoli #fiveguysburgers #fiveguysburgersandfries #5guys #burgersandfries #burgerlovers"
+        },
+        {
+          "platform": "instagram",
+          "handle": "fiveguysitaly",
+          "url": "https://www.instagram.com/p/DfMk3e0jVwF/",
+          "date": "2026-11-01T11:01:35+00:00",
+          "caption": "Otto crew member di Five Guys. Un solo palco. 100.000 dollari in palio.\n\n\n\nSul filo del rasoio: World Burger Games &egrave; ora in streaming su @primevideoit .\n\nI Five Guys Games portano sotto i riflettori dell&rsquo;arena il lavoro che i nostri team svolgono ogni giorno. Gli stessi ingredienti, la stessa attenzione, la stessa qualit&agrave; di sempre.\n\n\n\nIn cinque episodi, la docuserie segue gli otto finalisti nel percorso dai loro ristoranti fino alla sfida finale: la preparazione, la tensione, le persone che fanno il tifo per loro e quei pochi secondi che possono fare la differenza.\n\n\n\nGuarda ora su Prime Video!\n\n________\n\n#FiveGuys #FiveGuysItaly #Milano #Torino #Roma #CampiBisenzio #Firenze #Venezia #Napoli #fiveguysburgers #fiveguysburgersandfries #5guys #burgersandfries #burgerlovers"
+        }
+      ]
+    },
+    {
+      "id": "popeyes-it",
+      "name": "Competitor",
+      "cliente": "popeyes_it",
+      "urls": [
+        "https://www.instagram.com/popeyes_it"
+      ],
+      "descrizione": null,
+      "accounts": [
+        {
+          "platform": "instagram",
+          "handle": "popeyes_it",
+          "url": "https://www.instagram.com/popeyes_it"
+        }
+      ]
+    },
+    {
+      "id": "oldwildwest",
+      "name": "Competitor",
+      "cliente": "oldwildwest",
+      "urls": [
+        "https://www.instagram.com/oldwildwest"
+      ],
+      "descrizione": null,
+      "accounts": [
+        {
+          "platform": "instagram",
+          "handle": "oldwildwest",
+          "url": "https://www.instagram.com/oldwildwest"
+        },
+        {
+          "platform": "instagram",
+          "handle": "oldwildwest",
+          "url": "https://www.instagram.com/p/Dfxa8BdjOAx/",
+          "date": "2026-11-15T18:26:05+00:00",
+          "caption": "POV: hai appena trovato il tuo nuovo posto felice nel mondo 🍔​\n\n\n\n#OldWildWest"
+        },
+        {
+          "platform": "instagram",
+          "handle": "oldwildwest",
+          "url": "https://www.instagram.com/p/DfsE_dUDSJG/",
+          "date": "2026-11-13T16:38:07+00:00",
+          "caption": "New location to unlock: Old Wild West 🤠​\n\n\n\n#OldWildWest #GTA6​"
+        },
+        {
+          "platform": "instagram",
+          "handle": "oldwildwest",
+          "url": "https://www.instagram.com/p/DfmYJPTHOza/",
+          "date": "2026-11-11T11:30:02+00:00",
+          "caption": "No explanation needed 🤝​\n\n\n\n#OldWildWest"
+        },
+        {
+          "platform": "instagram",
+          "handle": "oldwildwest",
+          "url": "https://www.instagram.com/p/DfhHsf4Ac5p/",
+          "date": "2026-11-09T10:30:06+00:00",
+          "caption": "Per la serie \"il cliente ha sempre ragione\", salsa OWW edition 😮&zwj;💨​\n\n\n\n#OldWildWest #salsaOWW"
+        },
+        {
+          "platform": "instagram",
+          "handle": "oldwildwest",
+          "url": "https://www.instagram.com/p/DfZ4TeYgneJ/",
+          "date": "2026-11-06T15:01:30+00:00",
+          "caption": "Rieti, ci stavi aspettando... e siamo arrivati! 🤠\n\n\n\nVi aspettiamo tutti i giorni in via Marco Curio Dentato 9/C 📍 \n\n\n\n#OldWildWest #Rieti"
+        },
+        {
+          "platform": "instagram",
+          "handle": "oldwildwest",
+          "url": "https://www.instagram.com/p/DfXdtcDGGBl/",
+          "date": "2026-11-05T16:30:04+00:00",
+          "caption": "Vuoi sapere come provare a vincere i biglietti per i Live di X Factor? 👀🎤​\n\n\n\n​Facile: passa da OWW, scegli uno dei piatti del Menu X Factor e usa il codice sullo scontrino per tentare la fortuna online.​\n\n\n\nPotresti ritrovarti sotto al palco anzich&eacute; sul divano. E, nel frattempo, hai anche mangiato benissimo. Win-win 🔥🍔​\n\n\n\n#OldWildWest #XFactor2026 #WildFactor"
+        }
+      ]
+    }
+  ],
   "canali_cliente": [],
   "trend_mood": []
 }
