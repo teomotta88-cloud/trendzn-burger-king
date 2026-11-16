@@ -5,6 +5,8 @@ const RAIL_WIDTH = 56;
 // Margine laterale interno: i riquadri ingranditi (scale) non vengono tagliati dal contenitore scrollabile
 const RAIL_PAD = 10;
 const GAP = 16;
+// Altezza della navbar sticky: limite superiore minimo della colonna
+const NAVBAR_OFFSET = 72;
 // Ingombro totale a sinistra delle schede: RAIL_WIDTH + 2*RAIL_PAD + GAP = 92px. La colonna dei post
 // in piano-editoriale.index.tsx riserva lo stesso spazio (sm:ml-[92px]) sotto i 1520px, dove il margine
 // della pagina non basta; da 1520px in su il margine laterale è già sufficiente.
@@ -41,12 +43,15 @@ export function PostNumberRail({
   posts,
   getPostEl,
   anchorRef,
+  topAnchorRef,
   approvalsByPost,
   publishedCountByPost,
 }: {
   posts: EditorialPost[];
   getPostEl: (id: string) => HTMLElement | null;
   anchorRef: React.RefObject<HTMLElement | null>;
+  // Barra dei filtri (mese/anno): la colonna parte sempre sotto di essa e sale fino alla navbar quando esce dalla vista
+  topAnchorRef?: React.RefObject<HTMLElement | null>;
   approvalsByPost: Record<string, Record<ReviewComponent, boolean>>;
   publishedCountByPost: Record<string, number>;
 }) {
@@ -62,6 +67,9 @@ export function PostNumberRail({
       if (anchorEl && railEl) {
         const left = anchorEl.getBoundingClientRect().left - GAP - RAIL_WIDTH - RAIL_PAD;
         railEl.style.left = `${Math.max(8, left)}px`;
+        const filtersEl = topAnchorRef?.current;
+        const top = filtersEl ? Math.max(NAVBAR_OFFSET, filtersEl.getBoundingClientRect().bottom + GAP) : NAVBAR_OFFSET;
+        railEl.style.top = `${top}px`;
       }
 
       const viewportCenter = window.innerHeight / 2;
@@ -83,8 +91,7 @@ export function PostNumberRail({
         }
         const palette = PALETTE[approvalLevel(approvalsByPost[post.id], post.programmato, publishedCountByPost[post.id] ?? 0)];
         const scale = 1 + t * 0.55;
-        const z = t * 60;
-        boxEl.style.transform = `translateZ(${z}px) scale(${scale})`;
+        boxEl.style.transform = `scale(${scale})`;
         boxEl.style.borderColor = palette.border;
         boxEl.style.backgroundColor = palette.bg;
         boxEl.style.color = palette.text;
@@ -96,7 +103,13 @@ export function PostNumberRail({
       const railEl2 = railRef.current;
       const bestEl = bestIndex >= 0 ? boxRefs.current[bestIndex] : null;
       if (railEl2 && bestEl && railEl2.scrollHeight > railEl2.clientHeight + 1) {
-        const target = bestEl.offsetTop - railEl2.clientHeight / 2 + bestEl.offsetHeight / 2;
+        // Scorre solo se la data attiva esce dall'area visibile, così a inizio pagina il primo riquadro resta intero
+        const pad = 24;
+        const top = bestEl.offsetTop;
+        const bottom = top + bestEl.offsetHeight;
+        let target = railEl2.scrollTop;
+        if (top - pad < target) target = top - pad;
+        else if (bottom + pad > target + railEl2.clientHeight) target = bottom + pad - railEl2.clientHeight;
         const delta = target - railEl2.scrollTop;
         if (Math.abs(delta) > 1) railEl2.scrollTop += delta * 0.15;
       }
@@ -104,18 +117,18 @@ export function PostNumberRail({
     }
 
     return () => cancelAnimationFrame(frame);
-  }, [posts, getPostEl, anchorRef, approvalsByPost, publishedCountByPost]);
+  }, [posts, getPostEl, anchorRef, topAnchorRef, approvalsByPost, publishedCountByPost]);
 
   if (posts.length === 0) return null;
 
   return (
     <div
       ref={railRef}
-      // top = sotto la navbar sticky; bottom = margine dal fondo. Se i post non ci stanno, la colonna scorre.
+      // top (aggiornato a ogni frame) = sotto la barra dei filtri o, scrollando, sotto la navbar; bottom = margine dal fondo. Se i post non ci stanno, la colonna scorre.
       className="fixed bottom-4 top-[72px] z-20 hidden overflow-y-auto sm:flex [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       style={{ width: RAIL_WIDTH + RAIL_PAD * 2, paddingInline: RAIL_PAD }}
     >
-      <div className="my-auto flex w-full flex-col items-center gap-3 py-4" style={{ perspective: "800px" }}>
+      <div className="my-auto flex w-full flex-col items-center gap-3 py-4">
       {posts.map((post, i) => (
         <button
           key={post.id}
