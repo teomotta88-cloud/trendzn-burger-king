@@ -2,7 +2,12 @@ import { useEffect, useRef } from "react";
 import type { EditorialPost, ReviewComponent } from "@/lib/editorialPlan";
 
 const RAIL_WIDTH = 56;
+// Margine laterale interno: i riquadri ingranditi (scale) non vengono tagliati dal contenitore scrollabile
+const RAIL_PAD = 10;
 const GAP = 16;
+// Ingombro totale a sinistra delle schede: RAIL_WIDTH + 2*RAIL_PAD + GAP = 92px. La colonna dei post
+// in piano-editoriale.index.tsx riserva lo stesso spazio (sm:ml-[92px]) sotto i 1520px, dove il margine
+// della pagina non basta; da 1520px in su il margine laterale è già sufficiente.
 
 const PALETTE = {
   none: { border: "var(--color-border)", bg: "transparent", text: "var(--color-muted-foreground)", solid: "var(--color-primary)" },
@@ -55,12 +60,14 @@ export function PostNumberRail({
       const anchorEl = anchorRef.current;
       const railEl = railRef.current;
       if (anchorEl && railEl) {
-        const left = anchorEl.getBoundingClientRect().left - GAP - RAIL_WIDTH;
+        const left = anchorEl.getBoundingClientRect().left - GAP - RAIL_WIDTH - RAIL_PAD;
         railEl.style.left = `${Math.max(8, left)}px`;
       }
 
       const viewportCenter = window.innerHeight / 2;
       const spread = window.innerHeight * 0.55;
+      let bestIndex = -1;
+      let bestT = 0;
       posts.forEach((post, i) => {
         const el = getPostEl(post.id);
         const boxEl = boxRefs.current[i];
@@ -70,6 +77,10 @@ export function PostNumberRail({
         const dist = Math.abs(centerY - viewportCenter);
         const t = Math.max(0, 1 - dist / spread);
         const active = t > 0.55;
+        if (t > bestT) {
+          bestT = t;
+          bestIndex = i;
+        }
         const palette = PALETTE[approvalLevel(approvalsByPost[post.id], post.programmato, publishedCountByPost[post.id] ?? 0)];
         const scale = 1 + t * 0.55;
         const z = t * 60;
@@ -80,6 +91,15 @@ export function PostNumberRail({
         boxEl.style.boxShadow = "none";
         boxEl.style.zIndex = active ? "10" : "1";
       });
+
+      // Se la colonna è più alta della finestra, scorre per tenere visibile il post al centro
+      const railEl2 = railRef.current;
+      const bestEl = bestIndex >= 0 ? boxRefs.current[bestIndex] : null;
+      if (railEl2 && bestEl && railEl2.scrollHeight > railEl2.clientHeight + 1) {
+        const target = bestEl.offsetTop - railEl2.clientHeight / 2 + bestEl.offsetHeight / 2;
+        const delta = target - railEl2.scrollTop;
+        if (Math.abs(delta) > 1) railEl2.scrollTop += delta * 0.15;
+      }
       frame = requestAnimationFrame(tick);
     }
 
@@ -91,9 +111,11 @@ export function PostNumberRail({
   return (
     <div
       ref={railRef}
-      className="fixed top-1/2 z-20 hidden -translate-y-1/2 flex-col items-center gap-3 sm:flex"
-      style={{ perspective: "800px", width: RAIL_WIDTH }}
+      // top = sotto la navbar sticky; bottom = margine dal fondo. Se i post non ci stanno, la colonna scorre.
+      className="fixed bottom-4 top-[72px] z-20 hidden overflow-y-auto sm:flex [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      style={{ width: RAIL_WIDTH + RAIL_PAD * 2, paddingInline: RAIL_PAD }}
     >
+      <div className="my-auto flex w-full flex-col items-center gap-3 py-4" style={{ perspective: "800px" }}>
       {posts.map((post, i) => (
         <button
           key={post.id}
@@ -109,6 +131,7 @@ export function PostNumberRail({
           {formatDayMonth(post.post_date)}
         </button>
       ))}
+      </div>
     </div>
   );
 }
