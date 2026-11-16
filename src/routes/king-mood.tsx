@@ -50,7 +50,7 @@ function Page() {
     supabase
       .from("trend_submissions")
       .select("id, url, title, category, industry, tags, score, created_at, raw_email")
-      .eq("section", "trend-mood")
+      .in("section", ["trend-mood", "trend-attitude"]) // trend-attitude: righe salvate prima della rinomina in King Mood
       .eq("status", "approved")
       .order("created_at", { ascending: false })
       .then(({ data }) => {
