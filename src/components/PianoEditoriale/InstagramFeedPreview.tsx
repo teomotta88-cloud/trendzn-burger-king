@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { VideoPreview } from "./VideoPreview";
 import {
   Grid3x3,
   Bookmark,
@@ -230,7 +231,7 @@ export function InstagramFeedPreview({ posts }: { posts: EditorialPost[] }) {
               className="relative aspect-square overflow-hidden bg-muted"
             >
               {first && isVideo(first.url, first.type) ? (
-                <video src={first.url} className="size-full object-cover" muted />
+                <VideoPreview src={first.url} className="size-full object-cover" />
               ) : first ? (
                 <img src={first.url} alt={p.topic ?? ""} className="size-full object-cover" />
               ) : null}
@@ -260,7 +261,7 @@ export function InstagramFeedPreview({ posts }: { posts: EditorialPost[] }) {
           >
             <div className="relative flex aspect-square shrink-0 items-center justify-center bg-black sm:aspect-auto sm:w-[62%]">
               {currentMedia && isVideo(currentMedia.url, currentMedia.type) ? (
-                <video src={currentMedia.url} controls autoPlay className="max-h-full max-w-full object-contain" />
+                <video src={currentMedia.url} controls autoPlay playsInline className="max-h-full max-w-full object-contain" />
               ) : currentMedia ? (
                 <img src={currentMedia.url} alt="" className="max-h-full max-w-full object-contain" />
               ) : null}

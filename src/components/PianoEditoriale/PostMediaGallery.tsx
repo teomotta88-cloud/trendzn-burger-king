@@ -9,6 +9,7 @@ import {
   reorderMedia,
 } from "@/lib/editorialPlan";
 import { MediaLightbox } from "./MediaLightbox";
+import { VideoPreview } from "./VideoPreview";
 
 const MAX_PREVIEWS = 4;
 
@@ -20,6 +21,7 @@ export function PostMediaGallery({ postId }: { postId: string }) {
   const [media, setMedia] = useState<EditorialPostMedia[]>([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [showAll, setShowAll] = useState(false);
   const [dragIndex, setDragIndex] = useState<number | null>(null);
@@ -37,11 +39,19 @@ export function PostMediaGallery({ postId }: { postId: string }) {
   async function handleAddFiles(files: FileList | null) {
     if (!files || files.length === 0) return;
     setUploading(true);
+    setUploadError(null);
+    const errors: string[] = [];
     for (const file of Array.from(files)) {
-      await addMedia(postId, file);
+      try {
+        await addMedia(postId, file);
+      } catch (err) {
+        const reason = err instanceof Error ? err.message : (err as { message?: string })?.message ?? "errore sconosciuto";
+        errors.push(`${file.name}: ${reason}`);
+      }
     }
     await refresh();
     setUploading(false);
+    if (errors.length > 0) setUploadError(`Caricamento non riuscito — ${errors.join("; ")}`);
   }
 
   async function handleDelete(item: EditorialPostMedia) {
@@ -105,7 +115,7 @@ export function PostMediaGallery({ postId }: { postId: string }) {
             >
               <button type="button" className="size-full cursor-grab active:cursor-grabbing" onClick={() => setLightboxIndex(idx)}>
                 {isVideo(item.url, item.type) ? (
-                  <video src={item.url} className="size-full object-cover" muted />
+                  <VideoPreview src={item.url} className="size-full object-cover" />
                 ) : (
                   <img src={item.url} alt="" className="size-full object-cover" />
                 )}
@@ -162,9 +172,15 @@ export function PostMediaGallery({ postId }: { postId: string }) {
           multiple
           className="hidden"
           disabled={uploading}
-          onChange={(e) => handleAddFiles(e.target.files)}
+          onChange={(e) => {
+            const input = e.target;
+            handleAddFiles(input.files).finally(() => {
+              input.value = "";
+            });
+          }}
         />
       </label>
+      {uploadError && <p className="text-[11px] text-destructive">{uploadError}</p>}
 
       {lightboxIndex !== null && (
         <MediaLightbox media={media} index={lightboxIndex} onClose={() => setLightboxIndex(null)} onNavigate={setLightboxIndex} />
