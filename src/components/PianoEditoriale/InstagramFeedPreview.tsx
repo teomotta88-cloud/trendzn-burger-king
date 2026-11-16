@@ -108,8 +108,12 @@ export function InstagramFeedPreview({ posts }: { posts: EditorialPost[] }) {
     return [];
   }
 
+  // Le storie (canale IGS) non fanno parte della griglia del feed: restano fuori
+  // dall'anteprima, a meno che il post sia pubblicato anche sul feed (canale IG).
+  const isStoryOnly = (p: EditorialPost) => p.canali.includes("IGS") && !p.canali.includes("IG");
+
   const withVisual = [...posts]
-    .filter((p) => mediaFor(p).length > 0)
+    .filter((p) => !isStoryOnly(p) && mediaFor(p).length > 0)
     .sort((a, b) => b.post_date.localeCompare(a.post_date));
 
   const selectedPost = withVisual.find((p) => p.id === selectedPostId) ?? null;
