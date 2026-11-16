@@ -9,6 +9,15 @@
 //                    workflow stesso, così non serve più un'istanza esterna
 //                    sempre accesa da pagare — vedi .github/workflows/sync-canali-feed.yml)
 //
+//   SUPABASE_URL       URL del progetto Supabase (es. https://xxxx.supabase.co)
+//   SUPABASE_ANON_KEY  chiave pubblica (anon/publishable) del progetto: basta
+//                      per leggere i canali, che le policy RLS espongono in lettura
+//
+// Gli account da monitorare vengono letti da Supabase (tabelle trend_submissions
+// ed editorial_client_channels, cioè quelli inseriti dal portale) e uniti a
+// quelli già presenti in trends.json: la scrittura su GitHub fatta dal portale
+// al momento dell'inserimento non è più indispensabile.
+//
 // Eseguito da .github/workflows/sync-canali-feed.yml su schedule (ogni 3h)
 // o manualmente via workflow_dispatch.
 
@@ -105,10 +114,116 @@ async function fetchFeed(platform, handle) {
   }
 }
 
+const SUPABASE_URL = (process.env.SUPABASE_URL || "").replace(/\/$/, "");
+const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || "";
+
+const CANALE_TO_PLATFORM = { IG: "instagram", IGS: "instagram", FB: "facebook", TT: "tiktok", LK: "linkedin", X: "x", YT: "youtube" };
+
+function urlBase(url) {
+  try {
+    const u = new URL(url);
+    return u.origin + u.pathname.replace(/\/$/, "");
+  } catch {
+    return String(url).split("?")[0].replace(/\/$/, "");
+  }
+}
+
+function extractHandle(url) {
+  const clean = String(url).replace(/\/$/, "").split("?")[0];
+  const last = clean.split("/").pop() || url;
+  return normalizeHandle(last);
+}
+
+function slug(handle) {
+  return handle.replace(/[^a-z0-9]/gi, "-").toLowerCase();
+}
+
+async function supabaseSelect(table, query) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${query}`, {
+    headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
+    signal: AbortSignal.timeout(20000),
+  });
+  if (!res.ok) throw new Error(`Supabase ${table}: ${res.status} ${await res.text()}`);
+  return res.json();
+}
+
+// Aggiunge a trends.json i canali presenti su Supabase e non ancora in lista
+// (stessa struttura creata dal portale). Ritorna quanti ne ha aggiunti.
+async function mergeSupabaseChannels(trends) {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+    console.warn("SUPABASE_URL / SUPABASE_ANON_KEY non impostati: uso solo trends.json.");
+    return 0;
+  }
+
+  let added = 0;
+  function addIfMissing(list, entry) {
+    const base = urlBase(entry.accounts[0].url);
+    if (list.some((c) => c.accounts.some((a) => urlBase(a.url) === base))) return;
+    list.push(entry);
+    added++;
+  }
+
+  try {
+    const rows = await supabaseSelect(
+      "trend_submissions",
+      "select=url,title,industry,tags,section&section=in.(canali-inspo,influencer)&status=eq.approved&order=created_at.asc",
+    );
+    for (const row of rows) {
+      const platform = detectPlatform(row.url);
+      const handle = extractHandle(row.url);
+      const account = { platform, handle, url: row.url };
+      if (row.section === "canali-inspo") {
+        addIfMissing(trends.canali_inspo, {
+          id: slug(handle),
+          name: row.title || handle,
+          urls: [row.url],
+          descrizione: null,
+          accounts: [account],
+        });
+      } else {
+        addIfMissing(trends.influencer_profiles, {
+          id: slug(handle),
+          name: row.industry || handle,
+          cliente: row.title || null,
+          urls: [row.url],
+          descrizione: null,
+          accounts: [account],
+        });
+      }
+    }
+    console.log(`Supabase trend_submissions: ${rows.length} righe lette.`);
+  } catch (err) {
+    console.error(`Lettura trend_submissions fallita: ${String(err)}`);
+  }
+
+  try {
+    const channels = await supabaseSelect("editorial_client_channels", "select=canale,handle,url&order=created_at.asc");
+    for (const ch of channels) {
+      const handle = normalizeHandle(ch.handle) || extractHandle(ch.url);
+      addIfMissing(trends.canali_cliente, {
+        id: slug(handle),
+        name: handle,
+        urls: [ch.url],
+        descrizione: null,
+        accounts: [{ platform: CANALE_TO_PLATFORM[ch.canale] ?? detectPlatform(ch.url), handle, url: ch.url }],
+      });
+    }
+    console.log(`Supabase editorial_client_channels: ${channels.length} righe lette.`);
+  } catch (err) {
+    console.error(`Lettura editorial_client_channels fallita: ${String(err)}`);
+  }
+
+  console.log(`Canali aggiunti da Supabase a trends.json: ${added}.`);
+  return added;
+}
+
 const { trends, sha } = await readTrendsJson();
 
 if (!Array.isArray(trends.influencer_profiles)) trends.influencer_profiles = [];
 if (!Array.isArray(trends.canali_cliente)) trends.canali_cliente = [];
+if (!Array.isArray(trends.canali_inspo)) trends.canali_inspo = [];
+
+const addedFromSupabase = await mergeSupabaseChannels(trends);
 
 const lists = [trends.canali_inspo, trends.influencer_profiles, trends.canali_cliente];
 
@@ -138,7 +253,7 @@ for (const { handle, platform } of handles) {
 
 console.log(`Trovati ${allItems.length} item totali nei feed.`);
 
-let modified = false;
+let modified = addedFromSupabase > 0;
 
 for (const list of lists) {
   for (const item of allItems) {
