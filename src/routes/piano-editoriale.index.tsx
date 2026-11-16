@@ -42,6 +42,7 @@ function PianoEditorialePage() {
   const postElsRef = useRef(new Map<string, HTMLDivElement>());
   const getPostEl = useCallback((id: string) => postElsRef.current.get(id) ?? null, []);
   const postsColumnRef = useRef<HTMLDivElement>(null);
+  const filtersBarRef = useRef<HTMLDivElement>(null);
   const [approvalsByPost, setApprovalsByPost] = useState<
     Record<string, Record<ReviewComponent, boolean>>
   >({});
@@ -116,7 +117,7 @@ function PianoEditorialePage() {
         )}
       </header>
 
-      <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-border bg-card/50 p-4">
+      <div ref={filtersBarRef} className="flex flex-wrap items-center gap-3 rounded-2xl border border-border bg-card/50 p-4">
         <select
           value={month}
           onChange={(e) => setMonth(Number(e.target.value))}
@@ -211,6 +212,7 @@ function PianoEditorialePage() {
             posts={posts}
             getPostEl={getPostEl}
             anchorRef={postsColumnRef}
+            topAnchorRef={filtersBarRef}
             approvalsByPost={approvalsByPost}
             publishedCountByPost={publishedCountByPost}
           />
