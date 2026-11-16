@@ -167,7 +167,7 @@ function PianoEditorialePage() {
       ) : loading ? (
         <div className="text-sm text-muted-foreground">Caricamento piano…</div>
       ) : tab === "calendario" ? (
-        <div ref={postsColumnRef} className="space-y-4">
+        <div ref={postsColumnRef} className="space-y-4 sm:ml-[92px] min-[1520px]:ml-0">
           {plan && creating && (
             <NewPostCard
               planId={plan.id}
