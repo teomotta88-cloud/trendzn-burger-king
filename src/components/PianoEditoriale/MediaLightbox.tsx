@@ -71,6 +71,7 @@ export function MediaLightbox({
             src={current.url}
             controls
             autoPlay
+            playsInline
             className="max-h-[85vh] max-w-full rounded-lg object-contain"
           />
         ) : (
